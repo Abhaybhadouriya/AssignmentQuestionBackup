@@ -59,6 +59,8 @@
   "files.associations": {
     "fcntl.h": "c",
     "stdlib.h": "c",
-    "unistd.h": "c"
+    "unistd.h": "c",
+    "stdio.h": "c",
+    "select.h": "c"
   }
 }

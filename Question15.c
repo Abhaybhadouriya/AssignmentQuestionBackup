@@ -1,3 +1,6 @@
+// Roll no :- MT2024003
+// Name :- Abhay Bhadouriya
+// 15. Write a program to display the environmental variable of the user (use environ).
 #include <stdio.h>
 
 

@@ -1,3 +1,7 @@
+// Roll no :- MT2024003
+// Name :- Abhay Bhadouriya
+// 6. Write a program to take input from STDIN and display on STDOUT. Use only read/write system calls
+
 #include <unistd.h>
 
 int main() {

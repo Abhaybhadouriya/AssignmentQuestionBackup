@@ -1,3 +1,6 @@
+// Roll no :- MT2024003
+// Name :- Abhay Bhadouriya
+// 7. Write a program to copy file1 into file2 ($cp file1 file2).
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>

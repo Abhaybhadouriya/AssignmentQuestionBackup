@@ -1,3 +1,10 @@
+// Roll no :- MT2024003
+// Name :- Abhay Bhadouriya
+// 11. Write a program to open a file, duplicate the file descriptor and append the file with both the
+// descriptors and check whether the file is updated properly or not.
+// a. use dup
+// b. use dup2
+// c. use fcntl
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

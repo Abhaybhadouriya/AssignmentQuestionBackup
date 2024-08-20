@@ -1,3 +1,7 @@
+// Roll no :- MT2024003
+// Name :- Abhay Bhadouriya
+// 8. Write a program to open a file in read only mode, read line by line and display each line as it is read.
+// Close the file when end of file is reached
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>

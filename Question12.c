@@ -1,3 +1,6 @@
+// Roll no :- MT2024003
+// Name :- Abhay Bhadouriya
+// 12. Write a program to find out the opening mode of a file. Use fcntl.
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>

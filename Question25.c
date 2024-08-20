@@ -22,7 +22,7 @@ int main() {
     
    if ((child2 = fork()) == 0) {
         printf("Child 2 is running : %d\n", getpid());
-        exit(1);
+        exit(0);
     }
     
     if ((child3 = fork()) == 0) {
@@ -30,18 +30,12 @@ int main() {
         exit(0);
     }
 
-    int status;
     //  waitpid will wait for particular process
     //  and setting 0 means it will block the process untill its
     //  targeted child is executed successfully and changes its state 
     //  &status varibale hold the return status of child
-    waitpid(child2, &status, 0);
-    //  it check if process is terminated normally or not
-    // it returns non +ve value if it exited with exit() or returnign from main()
-
-    if (WIFEXITED(status)) {
-        printf("Child %d exited with status %d\n", child2, WEXITSTATUS(status));
-    }
+    waitpid(child2, NULL, 0);
+    printf("Child %d exited\n", child2);
 
     return 0;
 }

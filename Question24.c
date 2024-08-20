@@ -18,8 +18,11 @@ int main() {
         // then let parent process complete its executation
         sleep(10);  
         printf("Child process with process ID: %d  is now became an orphan.\nAs parent process is exited.\n", getpid());
-        // after parent process exited. the init process takeover tha orphan and let child compele its execution
-        printf("Parent process ID after child become orphan (should be 1 now): %d\n", getppid());
+        // after parent process exited. the init process takeover the orphan and let child compele its execution
+        // here in linux-Ubuntu 24.04 LTS orphan is handled by systemd 
+        // please check the to check systemd process
+        // pidof systemd
+        printf("Parent process ID after child become orphan : %d\n", getppid());
     } else {
         // Parent
         // set parent process to sleep so our child can enter and get sleep

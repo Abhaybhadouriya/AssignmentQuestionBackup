@@ -29,7 +29,7 @@ int main() {
     int line =1;
     // now reading the while using read fucntion 
     // here we  passed the FD and buffer and buffer size
-    bytesRead = read(fd, buffer, MAX_BUFFER_SIZE);
+    while((bytesRead = read(fd, buffer, MAX_BUFFER_SIZE))>0){
     // itareting through byte by byte or char by char to check a new line char "\n"
         for (ssize_t j = 0; j < bytesRead; ++j) {
             // if we encounter the new line char just enter in it
@@ -41,9 +41,14 @@ int main() {
                 // for 1st it will run from 0 to the first new line character' \n'
                 // then it increament the i index from 0 to j+1 for next line and so on
                 printf("%d : %.*s\n",line++,len,buffer+i);
+                char ch;
+                ch = getchar();
                 // incrementing the i index to start of new linel
                 i = j+1;
             }
+            // because after some time i become greater than j
+            i=0;
+        }
         }
     // of this varible is less then it means there is an error while reading
         if (bytesRead < 0) {

@@ -9,9 +9,9 @@
 // script name which we are going to run 
 #define SCRIPT_PATH "./Question26a.out"
 // time in hour
-#define TARGET_HOUR 22
+#define TARGET_HOUR 23
 // time in minute
-#define TARGET_MINUTE 9
+#define TARGET_MINUTE 06
 
 int main() {
     // run for infinite for checking if time is there 
@@ -21,7 +21,6 @@ int main() {
         // converting time to local machine
         struct tm *tm_info = localtime(&now);
         if (tm_info->tm_hour == TARGET_HOUR && tm_info->tm_min == TARGET_MINUTE) {
-                
                 // when time is same then just trigger the execl
                 execl(SCRIPT_PATH, SCRIPT_PATH, (char *)NULL);
         }

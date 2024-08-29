@@ -1,0 +1,4 @@
+Original data
+dup data 
+dup2 data
+fcntl data

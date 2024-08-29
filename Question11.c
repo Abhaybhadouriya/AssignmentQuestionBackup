@@ -44,7 +44,7 @@ int main() {
         // 1: Standard Output (stdout) – Used for writing output.
         // 2: Standard Error (stderr) – Used for writing error messages.
     // now after opening new file fd will point to 3 and 4 and so on .....
-    int fd = open( fileAdd,O_WRONLY | O_APPEND | O_CREAT, 0644);
+    int fd = open( fileAdd,O_WRONLY | O_CREAT | O_TRUNC, 0644);
     // if fd is smaller than 0 means file is not able to open
     //perror() print error message related to system call and library func
     //exit() terminate program and provide an exit status
@@ -78,10 +78,11 @@ int main() {
     // write(fd,buff[],size);
     // this method is used to write in a file using FD 
     // and 3rd arg is provided to specify the length og data we are going to write
-    write(fd, "Original descriptor.\n", 21);
-    write(fd_dup, "dup descriptor.\n", 16);
-    write(fd_dup2, "dup2 descriptor.\n", 17);
-    write(fd_fcntl, "fcntl descriptor.\n", 18);
+
+    write(fd, "Original data\n", 14);
+    write(fd_dup, "dup data \n", 10);
+    write(fd_dup2, "dup2 data\n", 10);
+    write(fd_fcntl, "fcntl data\n", 11);
     // it is used to close the FD and release all the lock and resource which being used by FD
     // on sucecss return 0 else 1 
     close(fd); close(fd_dup); close(fd_dup2); close(fd_fcntl);

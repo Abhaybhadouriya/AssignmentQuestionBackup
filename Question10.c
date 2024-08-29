@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
 
 int main() {
     int fd;
@@ -36,7 +38,7 @@ int main() {
         return 1;
     }
 
-    const char *tempData = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const char *tempData = "ABCDEF  GHIJKLMN  OPQRSTUVWXY  Zabcdefghijklm  nopqrstuvw  xyz";
     // writing temp data in so while using lseek no error occur in file
     bytes_written = write(fd, tempData, strlen(tempData));
     if (bytes_written < 0) {
@@ -107,5 +109,10 @@ int main() {
     // Close the file
     close(fd);
 
+    // Run the 'od' command to check the file contents
+    char cmd[300];
+    snprintf(cmd, sizeof(cmd), "od -c %s", fileName);
+    printf("File Data:\n");
+    
     return 0;
 }

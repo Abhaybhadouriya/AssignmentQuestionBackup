@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <unistd.h>
-
+#include <string.h>
 // Function to print the file type
 void printFileType(struct stat mode) {
     if (S_ISREG(mode.st_mode)) {
@@ -34,7 +34,8 @@ int main() {
   
     printf("Enter the file name with path \nor if file is in same directory just enter the name of file. \nFile name should be less than 255 char\n");
     char fileName[255];
-    gets(fileName);
+    fgets(fileName,sizeof(fileName),stdin);
+    fileName[strcspn(fileName,"\n")] = '\0';
     struct stat file_stat;
 
     // Get file status

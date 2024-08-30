@@ -1,4 +1,0 @@
-Original descriptor.
-dup descriptor.
-dup2 descriptor.
-fcntl descriptor.

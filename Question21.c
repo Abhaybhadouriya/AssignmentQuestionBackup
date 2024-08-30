@@ -3,6 +3,7 @@
 // 21. Write a program, call fork and print the parent and child process id.
 #include <stdio.h>
 #include <unistd.h>  
+#include <sys/wait.h>
 int main() {
     // Create a new process
     int pid = fork();
@@ -18,6 +19,7 @@ int main() {
         // Parent process
         printf("This is the parent process. Process ID: %d\n", getpid());
         printf("Child Process ID: %d\n", pid);
+        wait(NULL);
     }
 
     return 0;

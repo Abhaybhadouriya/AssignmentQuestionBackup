@@ -32,35 +32,14 @@ void setlock(int fd, int type,off_t offset,size_t size){
 }
 void writelock(int fd,off_t offset,size_t size){
     setlock(fd,F_WRLCK,offset,size);
-    printf("Locking the record file to book a ticket\n");
     char buff[250];
     ssize_t bytesReaded =  read(fd,buff,sizeof(buff)-1);
-    buff[bytesReaded]='\0';
-    int number = atoi(buff);
-    printf("Current no of Ticket Booked : %d \n",number);
-    printf("Press enter to Book Your ticket \n");
-    getchar();
-    getchar();
-    number++;
+    // if data present the truncate the file
+    ftruncate(fd,0);
     lseek(fd,0,SEEK_SET);
-    snprintf(buff,sizeof(buff),"%d",number);
+    snprintf(buff,sizeof(buff),"%d",0);
     write(fd,buff,strlen(buff));
-    printf("Ticket is Booked.\nYour Ticket no : %d\n Releasing the lock",number);
-    releaselock(fd,offset,size);
-}
-void readlock(int fd,off_t offset,size_t size){
-     setlock(fd,F_RDLCK,offset,size);
-     printf("Ticket record are locked in Reading mode ,\n");
-     char buff[500];
-     printf("Hit enter to get current no of ticket booked \n");
-     getchar();
-     getchar();
-     lseek(fd,0,SEEK_SET);
-     ssize_t bytes_read= read(fd,buff,sizeof(buff)-1);
-     buff[bytes_read]='\0';
-     printf("Ticket booked : \n\n%s \n",buff);
-     printf("Now Releasing the lock\n");
-
+    printf("Ticket Number is stored to 0.\n");
     releaselock(fd,offset,size);
 }
 int main(){
@@ -70,15 +49,7 @@ int main(){
         exit(1);// fail to open
     }
     int choice;
-    printf("Enter your choice\n1). Book Ticket (According to Question Press 1)\n2). Read Total Ticket Booked(Just to lookat total Tickets)\n");
-    scanf("%d",&choice);
-    switch (choice)
-    {
-    case 1: writelock(fd,100,0); break;
-    case 2: readlock(fd,100,0); break;
-    default: break;
-    }
-
+    writelock(fd,100,0); 
     close(fd);
     return 0;
 }

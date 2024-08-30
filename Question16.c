@@ -32,7 +32,7 @@ void writelock(int fd,off_t offset,size_t size){
     setlock(fd,F_WRLCK,offset,size);
     printf("file is locked in write mode\n");
     char *data = "THE DATA IS WRITTEN BY WRITELOCK FUNCTION DEFINED BY ABHAY";
-    printf("Press enter to write \n");
+    printf("Press enter to write ");
     getchar();
     getchar();
     write(fd,data,strlen(data));

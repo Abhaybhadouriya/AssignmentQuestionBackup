@@ -38,7 +38,7 @@ int main() {
         return 1;
     }
 
-    const char *tempData = "ABCDEF  GHIJKLMN  OPQRSTUVWXY  Zabcdefghijklm  nopqrstuvw  xyz";
+    const char *tempData = "--------------------------------------------------------------";
     // writing temp data in so while using lseek no error occur in file
     bytes_written = write(fd, tempData, strlen(tempData));
     if (bytes_written < 0) {

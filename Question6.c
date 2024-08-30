@@ -3,6 +3,7 @@
 // 6. Write a program to take input from STDIN and display on STDOUT. Use only read/write system calls
 
 #include <unistd.h>
+#include <stdio.h>
 
 int main() {
     char maxBufferSpace[500];
@@ -33,7 +34,7 @@ int main() {
     // read is LL function used read from FD such as file,pipe. it is unbuffered
     // on success return the no of bytes it reads. 
     printf("Write Something \n");
-    ssize_t bytesReadSize = read(STDIN_FILENO, maxBufferSpace, maxBufferSpace);
+    ssize_t bytesReadSize = read(STDIN_FILENO, maxBufferSpace, sizeof(maxBufferSpace));
 
     // Writing with 
     // write(fd,buff[],size);

@@ -116,7 +116,7 @@ int main(){
         exit(1);// fail to open
     }
     int choice;
-    printf("Enter your choice\n1). Book Ticket (According to Question Press 1)\n2). Read Total Ticket Booked(Just to lookat total Tickets)\n");
+    printf("Enter your choice\n1). Write Mode\n2). Read Mode\n");
     scanf("%d",&choice);
     switch (choice)
     {

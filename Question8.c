@@ -15,7 +15,7 @@ int main() {
     // and open it with O_RDONLY access
     // ######################
     // a note for TAs please change the file name in your pc if your are checking
-    int fd = open("testfile_Q7.txt", O_RDONLY); 
+    int fd = open("Q7Sfile.txt", O_RDONLY); 
     // if fd is less than 0 that means there is an error
     if (fd < 0) {
         perror("There is an Error  while opening  the file");
@@ -47,7 +47,7 @@ int main() {
                 i = j+1;
             }
             // because after some time i become greater than j
-            i=0;
+            // i=0;
         }
         }
     // of this varible is less then it means there is an error while reading

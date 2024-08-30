@@ -43,7 +43,7 @@ void printFileMode(int flags) {
 }
 
 int main() {
-    char fileAdd[]="testfile_Q12.txt";
+    char fileAdd[]="Question13.c";
     // Open a file with specific flags
     // open file with write and read only and append flag 
     // and adding O_CREAT flag if file not exist

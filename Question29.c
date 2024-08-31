@@ -1,3 +1,9 @@
+// Roll no :- MT2024003
+// Name :- Abhay Bhadouriya
+// 29. Write a program to get scheduling policy and modify the scheduling policy (SCHED_FIFO,SCHED_RR).
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

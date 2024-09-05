@@ -1,0 +1,5486 @@
+%!PS-Adobe-3.0
+%%Title: Question1.c, Question2.c, Question3.c, Question4.c, Question5.c, Question6.c, Question7.c, Question8.c, Question9.c, Question10.c
+%%For: Abhay
+%%Creator: a2ps version 4.15.5
+%%CreationDate: Tue Sep  3 18:34:20 2024
+%%BoundingBox: 24 24 571 818
+%%DocumentData: Clean7Bit
+%%Orientation: Landscape
+%%Pages: 35
+%%PageOrder: Ascend
+%%DocumentMedia: a4 595 842 0 () ()
+%%DocumentNeededResources: font Courier
+%%+ font Courier-Bold
+%%+ font Courier-BoldOblique
+%%+ font Courier-Oblique
+%%+ font Helvetica
+%%+ font Helvetica-Bold
+%%+ font Symbol
+%%+ font Times-Bold
+%%+ font Times-Roman
+%%DocumentProcessColors: Black 
+%%DocumentSuppliedResources: procset a2ps-a2ps-hdr
+%%+ procset a2ps-black+white-Prolog
+%%+ encoding ISO-8859-1Encoding
+%%EndComments
+/a2psdict 200 dict def
+a2psdict begin
+%%BeginProlog
+%%Copyright: (c) 1988-2017 Free Software Foundation, Inc.
+% Check PostScript language level.
+/languagelevel where {
+  pop /gs_languagelevel languagelevel def
+} {
+  /gs_languagelevel 1 def
+} ifelse
+
+% EPSF import as in the Red Book
+/BeginInclude {
+  /b4_Inc_state save def    		% Save state for cleanup
+  /dict_count countdictstack def	% Count objects on dict stack
+  /op_count count 1 sub def		% Count objects on operand stack 
+  userdict begin
+    0 setgray 0 setlinecap
+    1 setlinewidth 0 setlinejoin
+    10 setmiterlimit [ ] 0 setdash newpath
+    gs_languagelevel 1 ne {
+      false setstrokeadjust false setoverprint 
+    } if
+} bind def
+
+/EndInclude {
+  count op_count sub { pos } repeat	% Clean up stacks
+  countdictstack dict_count sub { end } repeat
+  b4_Inc_state restore
+} bind def
+
+/BeginEPSF {
+  BeginInclude
+  /showpage { } def
+} bind def
+
+/EndEPSF {
+  EndInclude
+} bind def
+
+% Page prefeed
+/page_prefeed {         % bool -> -
+  statusdict /prefeed known {
+    statusdict exch /prefeed exch put
+  } {
+    pop
+  } ifelse
+} bind def
+
+/deffont {
+  findfont exch scalefont def
+} bind def
+
+/reencode_font {
+  findfont reencode 2 copy definefont pop def
+} bind def
+
+% Function c-show (str => -)
+% centers text only according to x axis.
+/c-show { 
+  dup stringwidth pop
+  2 div neg 0 rmoveto
+  show
+} bind def
+
+% Function l-show (str => -)
+% prints texts so that it ends at currentpoint
+/l-show {
+  dup stringwidth pop neg 
+  0 
+  rmoveto show
+} bind def
+
+% center-fit show (str w => -)
+% show centered, and scale currentfont so that the width is less than w
+/cfshow {
+  exch dup stringwidth pop
+  % If the title is too big, try to make it smaller
+  3 2 roll 2 copy
+  gt
+  { % if, i.e. too big
+    exch div
+    currentfont exch scalefont setfont
+  } { % ifelse
+    pop pop 
+  }
+  ifelse
+  c-show			% center title
+} bind def
+
+% Return the y size of the current font
+% - => fontsize
+/currentfontsize {
+  currentfont /FontType get 0 eq {
+    currentfont /FontMatrix get 3 get
+  }{
+    currentfont /FontMatrix get 3 get 1000 mul
+  } ifelse
+} bind def
+
+% reencode the font
+% <encoding-vector> <fontdict> -> <newfontdict>
+/reencode { %def
+  dup length 5 add dict begin
+    { %forall
+      % <vector> <key> <val>
+      1 index /FID ne 
+      { def }{ pop pop } ifelse
+    } forall
+    /Encoding exch def % -
+
+    % Use the font's bounding box to determine the ascent, descent,
+    % and overall height; don't forget that these values have to be
+    % transformed using the font's matrix.
+    % We use `load' because sometimes BBox is executable, sometimes not.
+    % Since we need 4 numbers an not an array avoid BBox from being executed
+    /FontBBox load aload pop
+    FontMatrix transform /Ascent exch def pop
+    FontMatrix transform /Descent exch def pop
+    /FontHeight Ascent Descent sub def
+
+    % Get the underline position and thickness if they're defined.
+    % Use 1 if they are not defined.
+    currentdict /FontInfo 2 copy known
+    { get
+      /UnderlinePosition 2 copy % <FontInfo> /UP <FontInfo> /UP
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+
+      /UnderlineThickness 2 copy % <FontInfo> /UT <FontInfo> /UT
+      2 copy known
+      { get }{ pop pop 1 } ifelse
+      0 exch FontMatrix transform exch pop
+      def % <FontInfo>
+      pop % -
+    }{ pop pop
+    } ifelse
+
+    currentdict
+  end 
+} bind def
+
+% composite fonts for ASCII-EUC mixed strings
+% Version 1.2 1/31/1990
+% Original Ken'ichi HANDA (handa@etl.go.jp)
+% Modified Norio Katayama (katayama@rd.nacsis.ac.jp),1998
+% Extend & Fix Koji Nakamaru (maru@on.cs.keio.ac.jp), 1999
+% Anyone can freely copy, modify, distribute this program.
+
+/copyfont {	% font-dic extra-entry-count  copyfont  font-dic
+	1 index maxlength add dict begin
+	{	1 index /FID ne 2 index /UniqueID ne and
+		{def} {pop pop} ifelse
+	} forall
+	currentdict
+	end
+} bind def
+
+/compositefont { % ASCIIFontName EUCFontName RomanScale RomanOffset Rot(T/F) compositefont font
+    /RomanRotation exch def
+    /RomanOffset exch def
+    /RomanScale exch def
+    userdict /fixeucfont_dict known not {
+	userdict begin
+	    /fixeucfont_dict 2 dict begin
+		/UpperByteEncoding [
+		    16#00 1 16#20 { pop 0 } for
+		    16#21 1 16#28 { 16#20 sub } for
+		    16#29 1 16#2F { pop 0 } for
+		    16#30 1 16#74 { 16#27 sub } for
+		    16#75 1 16#FF { pop 0 } for
+		] def
+	        /LowerByteEncoding [
+		    16#00 1 16#A0 { pop /.notdef } for
+		    16#A1 1 16#FE { 16#80 sub 16 2 string cvrs
+				    (cXX) dup 1 4 -1 roll
+				    putinterval cvn } for
+		    /.notdef
+		] def
+		currentdict
+	    end def
+	end
+    } if
+    findfont dup /FontType get 0 eq {
+	14 dict begin
+	    %
+	    % 7+8 bit EUC font
+	    %
+	    12 dict begin
+		/EUCFont exch def
+		/FontInfo (7+8 bit EUC font) readonly def
+		/PaintType 0 def
+		/FontType 0 def
+		/FontMatrix matrix def
+		% /FontName
+		/Encoding fixeucfont_dict /UpperByteEncoding get def
+		/FMapType 2 def
+		EUCFont /WMode known
+		{ EUCFont /WMode get /WMode exch def }
+		{ /WMode 0 def } ifelse
+		/FDepVector [
+		    EUCFont /FDepVector get 0 get
+		    [ 16#21 1 16#28 {} for 16#30 1 16#74 {} for ]
+		    {
+			13 dict begin
+			    /EUCFont EUCFont def
+			    /UpperByte exch 16#80 add def	
+			    % /FontName
+			    /FontInfo (EUC lower byte font) readonly def
+			    /PaintType 0 def
+			    /FontType 3 def
+			    /FontMatrix matrix def
+			    /FontBBox {0 0 0 0} def
+			    /Encoding
+				fixeucfont_dict /LowerByteEncoding get def
+			    % /UniqueID
+			    % /WMode
+			    /BuildChar {
+				gsave
+				exch dup /EUCFont get setfont
+				/UpperByte get
+				2 string
+				dup 0 4 -1 roll put
+				dup 1 4 -1 roll put
+				dup stringwidth setcharwidth
+				0 0 moveto show
+				grestore
+			    } bind def
+			    currentdict
+			end
+			/lowerbytefont exch definefont
+		    } forall
+		] def
+		currentdict
+	    end
+	    /eucfont exch definefont
+	    exch
+	    findfont 1 copyfont dup begin
+		RomanRotation {
+			/FontMatrix FontMatrix
+			[ 0 RomanScale neg RomanScale 0 RomanOffset neg 0 ]
+			matrix concatmatrix def
+		}{
+			/FontMatrix FontMatrix
+			[ RomanScale 0 0 RomanScale 0 RomanOffset ] matrix concatmatrix
+			def
+			/CDevProc
+			    {pop pop pop pop 0 exch -1000 exch 2 div 880} def
+		} ifelse
+	    end
+	    /asciifont exch definefont
+	    exch
+	    /FDepVector [ 4 2 roll ] def
+	    /FontType 0 def
+	    /WMode 0 def
+	    /FMapType 4 def
+	    /FontMatrix matrix def
+	    /Encoding [0 1] def
+	    /FontBBox {0 0 0 0} def
+%	    /FontHeight 1.0 def % XXXX
+	    /FontHeight RomanScale 1.0 ge { RomanScale }{ 1.0 } ifelse def
+	    /Descent -0.3 def   % XXXX
+	    currentdict
+	end
+	/tmpfont exch definefont
+	pop
+	/tmpfont findfont
+    }{
+	pop findfont 0 copyfont
+    } ifelse
+} def	
+
+/slantfont {	% FontName slant-degree  slantfont  font'
+    exch findfont 1 copyfont begin
+    [ 1 0 4 -1 roll 1 0 0 ] FontMatrix exch matrix concatmatrix
+    /FontMatrix exch def
+    currentdict
+    end
+} def
+
+% Function print line number (<string> # -)
+/# {
+  gsave
+    sx cw mul neg 2 div 0 rmoveto
+    f# setfont
+    c-show
+  grestore
+} bind def
+
+% -------- Some routines to enlight plain b/w printings ---------
+
+% Underline
+% width --
+/dounderline {
+  currentpoint
+  gsave
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    0 rlineto
+    stroke
+  grestore
+} bind def
+
+% Underline a string
+% string --
+/dounderlinestring {
+  stringwidth pop
+  dounderline
+} bind def
+
+/UL {
+  /ul exch store
+} bind def
+
+% Draw a box of WIDTH wrt current font
+% width --
+/dobox {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    stroke
+  grestore
+} bind def
+
+/BX {
+  /bx exch store
+} bind def
+
+% Box a string
+% string --
+/doboxstring {
+  stringwidth pop
+  dobox
+} bind def
+
+%
+% ------------- Color routines ---------------
+%
+/FG /setrgbcolor load def
+
+% Draw the background
+% width --
+/dobackground {
+  currentpoint
+  gsave
+    newpath
+    moveto
+    0 currentfont /Descent get currentfontsize mul rmoveto
+    dup 0 rlineto
+    0 currentfont /FontHeight get currentfontsize mul rlineto
+    neg 0 rlineto
+    closepath
+    bgcolor aload pop setrgbcolor
+    fill
+  grestore
+} bind def
+
+% Draw bg for a string
+% string --
+/dobackgroundstring {
+  stringwidth pop
+  dobackground
+} bind def
+
+
+/BG {
+  dup /bg exch store
+  { mark 4 1 roll ] /bgcolor exch store } if
+} bind def
+
+
+/Show {
+  bg { dup dobackgroundstring } if
+  ul { dup dounderlinestring } if
+  bx { dup doboxstring } if
+  show
+} bind def
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T {
+  cw mul x0 add
+  bg { dup currentpoint pop sub dobackground } if
+  ul { dup currentpoint pop sub dounderline } if
+  bx { dup currentpoint pop sub dobox } if
+  y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n {
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+/S {
+  Show
+} bind def
+
+%%BeginResource: procset a2ps-a2ps-hdr 2.0 2
+%%Copyright: (c) 1988, 89, 90, 91, 92, 93 Miguel Santana
+%%Copyright: (c) 1995, 96, 97, 98 Akim Demaille, Miguel Santana
+% Function title: prints page header.
+% <ct> <rt> <lt> are passed as argument
+/title { 
+  % 1. Draw the background
+  x v get y v get moveto
+  gsave
+    0 th 2 div neg rmoveto 
+    th setlinewidth
+    0.95 setgray
+    pw 0 rlineto stroke
+  grestore
+  % 2. Border it
+  gsave
+    0.7 setlinewidth
+    pw 0 rlineto
+    0 th neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+  % stk: ct rt lt
+  x v get y v get th sub 1 add moveto
+%%IncludeResource: font Helvetica
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  % 3. The left title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    fnfs 0.8 mul hm rmoveto
+    show			% left title
+  grestore
+  exch
+  % stk: ct ltw rt
+  % 4. the right title
+  gsave
+    dup stringwidth pop fnfs 0.8 mul add exch % leave space took on stack
+    dup
+    pw exch stringwidth pop fnfs 0.8 mul add sub
+    hm
+    rmoveto
+    show			% right title
+  grestore
+  % stk: ct ltw rtw
+  % 5. the center title
+  gsave
+    pw 3 1 roll
+    % stk: ct pw ltw rtw
+    3 copy 
+    % Move to the center of the left room
+    sub add 2 div hm rmoveto
+    % What is the available space in here?
+    add sub fnfs 0.8 mul sub fnfs 0.8 mul sub
+    % stk: ct space_left
+%%IncludeResource: font Helvetica-Bold
+  fHelvetica-Bold fnfs scalefont setfont
+    cfshow
+  grestore
+} bind def
+
+% Function border: prints virtual page border
+/border { %def
+  gsave				% print four sides
+    0 setgray
+    x v get y v get moveto
+    0.7 setlinewidth		% of the square
+    pw 0 rlineto
+    0 ph neg rlineto
+    pw neg 0 rlineto
+    closepath stroke
+  grestore
+} bind def
+
+% Function water: prints a water mark in background
+/water { %def
+  gsave
+    scx scy moveto rotate
+%%IncludeResource: font Times-Bold
+  fTimes-Bold 100 scalefont setfont
+    .97 setgray
+    dup stringwidth pop 2 div neg -50 rmoveto
+    show
+  grestore
+} bind def
+
+% Function rhead: prints the right header
+/rhead {  %def
+  lx ly moveto
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  l-show
+} bind def
+
+% Function footer (cf rf lf -> -)
+/footer {
+  fHelvetica fnfs 0.8 mul scalefont setfont
+  dx dy moveto
+  show
+
+  snx sny moveto
+  l-show
+  
+  fnx fny moveto
+  c-show
+} bind def
+%%EndResource
+%%BeginResource: procset a2ps-black+white-Prolog 2.0 1
+
+% Function T(ab), jumps to the n-th tabulation in the current line
+/T { 
+  cw mul x0 add y0 moveto
+} bind def
+
+% Function n: move to the next line
+/n { %def
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+} bind def
+
+% Function N: show and move to the next line
+/N {
+  Show
+  /y0 y0 bfs sub store
+  x0 y0 moveto
+}  bind def
+
+/S {
+  Show
+} bind def
+
+/p {
+  false UL
+  false BX
+  fCourier bfs scalefont setfont
+  Show
+} bind def
+
+/sy {
+  false UL
+  false BX
+  fSymbol bfs scalefont setfont
+  Show
+} bind def
+
+/k {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/K {
+  false UL
+  false BX
+  fCourier-Bold bfs scalefont setfont
+  Show
+} bind def
+
+/c {
+  false UL
+  false BX
+  fCourier-Oblique bfs scalefont setfont
+  Show
+} bind def
+
+/C {
+  false UL
+  false BX
+  fCourier-BoldOblique bfs scalefont setfont
+  Show 
+} bind def
+
+/l {
+  false UL
+  false BX
+  fHelvetica bfs scalefont setfont
+  Show
+} bind def
+
+/L {
+  false UL
+  false BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show 
+} bind def
+
+/str{
+  false UL
+  false BX
+  fTimes-Roman bfs scalefont setfont
+  Show
+} bind def
+
+/e{
+  false UL
+  true BX
+  fHelvetica-Bold bfs scalefont setfont
+  Show
+} bind def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier
+%%IncludeResource: font Courier-Oblique
+%%IncludeResource: font Courier-Bold
+%%IncludeResource: font Times-Roman
+%%IncludeResource: font Symbol
+%%IncludeResource: font Courier-BoldOblique
+%%BeginResource: encoding ISO-8859-1Encoding
+/ISO-8859-1Encoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclam /quotedbl /numbersign /dollar /percent /ampersand /quoteright 
+/parenleft /parenright /asterisk /plus /comma /minus /period /slash 
+/zero /one /two /three /four /five /six /seven 
+/eight /nine /colon /semicolon /less /equal /greater /question 
+/at /A /B /C /D /E /F /G 
+/H /I /J /K /L /M /N /O 
+/P /Q /R /S /T /U /V /W 
+/X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore 
+/quoteleft /a /b /c /d /e /f /g 
+/h /i /j /k /l /m /n /o 
+/p /q /r /s /t /u /v /w 
+/x /y /z /braceleft /bar /braceright /asciitilde /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef 
+/space /exclamdown /cent /sterling /currency /yen /brokenbar /section 
+/dieresis /copyright /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron 
+/degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph /bullet 
+/cedilla /onesuperior /ordmasculine /guillemotright /onequarter /onehalf /threequarters /questiondown 
+/Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla 
+/Egrave /Eacute /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis 
+/Eth /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply 
+/Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn /germandbls 
+/agrave /aacute /acircumflex /atilde /adieresis /aring /ae /ccedilla 
+/egrave /eacute /ecircumflex /edieresis /igrave /iacute /icircumflex /idieresis 
+/eth /ntilde /ograve /oacute /ocircumflex /otilde /odieresis /divide 
+/oslash /ugrave /uacute /ucircumflex /udieresis /yacute /thorn /ydieresis 
+] def
+%%EndResource
+% Initialize page description variables.
+/sh 595 def
+/sw 842 def
+/llx 24 def
+/urx 818 def
+/ury 571 def
+/lly 24 def
+/#copies 1 def
+/th 15.000000 def
+/fnfs 11 def
+/bfs 8.005733 def
+/cw 4.803440 def
+
+% Dictionary for ISO-8859-1 support
+/iso1dict 8 dict begin
+  /fCourier ISO-8859-1Encoding /Courier reencode_font
+  /fCourier-Bold ISO-8859-1Encoding /Courier-Bold reencode_font
+  /fCourier-BoldOblique ISO-8859-1Encoding /Courier-BoldOblique reencode_font
+  /fCourier-Oblique ISO-8859-1Encoding /Courier-Oblique reencode_font
+  /fHelvetica ISO-8859-1Encoding /Helvetica reencode_font
+  /fHelvetica-Bold ISO-8859-1Encoding /Helvetica-Bold reencode_font
+  /fTimes-Bold ISO-8859-1Encoding /Times-Bold reencode_font
+  /fTimes-Roman ISO-8859-1Encoding /Times-Roman reencode_font
+currentdict end def
+/bgcolor [ 0 0 0 ] def
+/bg false def
+/ul false def
+/bx false def
+% The font for line numbering
+/f# /Helvetica findfont bfs .6 mul scalefont def
+/fSymbol /Symbol findfont def
+/hm fnfs 0.25 mul def
+/pw
+   cw 81.400000 mul
+def
+/ph
+   501.959430 th add
+def
+/pmw urx llx sub pw 2 mul sub 1 div def
+/pmh 0 def
+/v 0 def
+/x [
+  0
+  dup pmw add pw add
+] def
+/y [
+  pmh ph add 0 mul ph add
+  dup
+] def
+/scx sw 2 div def
+/scy sh 2 div def
+/snx urx def
+/sny lly 2 add def
+/dx llx def
+/dy sny def
+/fnx scx def
+/fny dy def
+/lx snx def
+/ly ury fnfs 0.8 mul sub def
+/sx 0 def
+/tab 8 def
+/x0 0 def
+/y0 0 def
+%%EndSetup
+
+%%Page: (1-2) 1
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 1. Create the following types of a files using \(i\) shell command \(ii\) system ) N
+(call) N
+(// a. soft link \(symlink system call\)) N
+(// b. hard link \(link system call\)) N
+(// c. FIFO \(mkfifo Library Function or mknod system call\)) N
+() p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <sys/stat.h>) p n
+(#include) K
+( <fcntl.h>) p n
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(// declaring the names of files) c n
+(    ) p
+(char) k
+( *myOriginalFile = ") p
+(MyOriginalFile.txt) str
+(";) p n
+(    ) S
+(char) k
+( *symLinkFile = ") p
+(mySymLinkFile) str
+(";) p n
+(    ) S
+(char) k
+( *hardLinkFile = ") p
+(myHardLinkFile) str
+(";) p n
+(    ) S
+(char) k
+( *fifoFile = ") p
+(myFifoFile) str
+(";) p n
+() N
+(    ) S
+(// creating the file with name "MyOriginalFile.txt"  which an original file ) c n
+(for all linker links) N
+(    ) p
+(// FILE *fp is file pointer to a file object) c n
+(    ) p
+(// fopen return the pointer to a FILE structure that represent the open file) c n
+( stream on success else null) N
+(    ) p
+(// ) c n
+(    ) p
+(FILE) k
+( *fp = fopen\(myOriginalFile, ") p
+(w) str
+("\);) p n
+(    ) S
+(if) K
+( \(!fp\) {) p n
+(        perror\(") S
+(Error creating original file) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(    ) S
+(// used to write formatted O/P to file stream.) c n
+(    ) p
+(// fprintf\(File *stream, const char *format, ...\)) c n
+(    ) p
+(// 1st arg - file pointer to file) c n
+(    ) p
+(// 2nd arg - formate string) c n
+(    ) p
+(// 3rd - additional argument for format ) c n
+(    fprintf\(fp, ") p
+(This is out original file which is used for linking purpose.\\n) str
+("\);) p n
+(    ) S
+(// close the file pointer) c n
+(    fclose\(fp\);) p n
+() N
+(    ) S
+(// int symlink\(const char *target, const char *linkpath\);) c n
+(    ) p
+(//  it will create new file that points to target file) c n
+(    ) p
+(// if original file is deleted, moved, renamed the symbolic link may become ) c n
+("broken") N
+(    ) p
+(// there are there error) c n
+(    ) p
+(// 1. EEXIST  = sym link already exist) c n
+(    ) p
+(// 2. ENOENT  = target file not exist) c n
+(    ) p
+(// 3. EACCES  = parmission denied ) c n
+(    ) p
+(if) K
+( \(symlink\(myOriginalFile, symLinkFile\) == -1\) {) p n
+(        perror\(") S
+(we have encountered and Error  while creating symbolic link) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+(    printf\(") S
+(Symbolic link created: %s -> %s\\n) str
+(", symLinkFile, myOriginalFile\);) p n
+() N
+(    ) S
+(// hardlink is just a additional entry that points to the same original file) c n
+( inode) N
+(    ) p
+(// both are same and sharing the same data block changes made to one file wi) c n
+(ll reflext to another) N
+(    ) p
+(// all there error are same but haere one error we can see) c n
+(    ) p
+(// 4. EXDEV -  target and files are on different file system  as we cannot c) c n
+(reate hard link on different file system) N
+(Question1.c) (Page 1/2) (Aug 20, 2024 11:45) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(    ) p
+(if) K
+( \(link\(myOriginalFile, hardLinkFile\) == -1\) {) p n
+(        perror\(") S
+(we have encountered and Error  while creating hard link) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+(    ) N
+(    printf\(") S
+(Hard link created: %s -> %s\\n) str
+(", hardLinkFile, myOriginalFile\);) p n
+() N
+(    ) S
+(// Fifo is IPC ) c n
+(    ) p
+(// mkfifo\(\) takes 2 argument path and permissions) c n
+(    ) p
+(if) K
+( \(mkfifo\(fifoFile, 0666\) == -1\) {) p n
+(        perror\(") S
+(we have encountered and Error  while creating FIFO) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+(    printf\(") S
+(Fifo file is : %s\\n) str
+(",fifoFile\);) p n
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question1.c) (Page 2/2) (Aug 20, 2024 11:45) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question1.c) (1/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 2
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 2. Write a simple program to execute in an infinite loop at the background. G) N
+(o to /proc directory and) N
+(// identify all the process related information in the corresponding proc direct) N
+(ory.) N
+() p n
+() N
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <unistd.h>) p n
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(// run this program in backgroud using below command) c n
+() p n
+() N
+(    ) S
+(// './Question2 &' ) c n
+(    ) p
+(// 'ps aux | grep Question2') c n
+() p n
+(    ) S
+(// now to explore the PID) c n
+(    ) p
+(// '  cd /proc/<process id of running process> ') c n
+() p n
+() N
+(    ) S
+(// in this directory we can also get the detailed info about the process) c n
+(    ) p
+(// cat /proc/<pid>/cmdline - the cmd arg passed to process) c n
+(    ) p
+(// cat /proc/<PID>/status  -  info about the process status, pid, parent pid) c n
+(, etc) N
+(    ) p
+(// ls -l /proc/<PID>/fd -  list of all opened files) c n
+(    ) p
+(// cat /proc/<PID>/maps - memory mapping of program) c n
+(    ) p
+(// ls -l /proc/<PID>/cwd - display process currently working directory) c n
+(    ) p
+(// cat /proc/<PID>/environ | tr '\\0' '\\n'  -  file contains the environment ) c n
+(variable passed to process) N
+(    ) p
+(// ls -l /proc/<PID>/exe ) c n
+(    ) p
+(// cat /proc/<PID>/stat -   single line space seprated values representing t) c n
+(he process status and performance) N
+(    ) p
+(// cat /proc/<PID>/limits - diplay limit imposed on process \(max open files,) c n
+( memory usage\)) N
+(    ) p
+(// cat /proc/<PID>/sched - it display scheduling info  - such as number of v) c n
+(oluntary and involuntary context switches) N
+(    ) p
+(// run this infinitely) c n
+(    ) p
+(while) K
+( \(1\) {) p n
+(        ) S
+(// sleeping program for every 2-2 sec to utilize the cpu resources) c n
+(        sleep\(1\);) p n
+(    }) N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question2.c) (Page 1/1) (Aug 20, 2024 11:46) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question2.c) (2/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 3
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 3. Write a program to create a file and print the file descriptor value. Use ) N
+(creat \( \) system call) N
+() p n
+() N
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <sys/types.h>) p n
+(#include) K
+( <sys/stat.h>) p n
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(char) k
+( fileName[250];  ) p
+(// File name buffer) c n
+(    ) p
+(int) k
+( fd; ) p
+(// declaring the FD) c n
+(    printf\(") p
+(Enter the file name -  \\n) str
+("\);) p n
+(    ) S
+(if) K
+(\(fgets\(fileName,) p
+(sizeof) K
+(\(fileName\),stdin\)==) p
+(NULL) K
+(\){) p n
+(        perror\(") S
+(Error while reading filename) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(    ) S
+(// Create System call is used to create a new file,truncate an existing file) c n
+( and open file in write only mode) N
+(    ) p
+(// creat\(pathname,mode_t mode\) - mode -> it is file permission to be set whe) c n
+(n file is created. uses) N
+(    ) p
+(// S_IRUSER -  read permission for owner) c n
+(    ) p
+(// S_IWUSER - write permission for owner) c n
+(    ) p
+(// S_IXUSER - execute/search permission for owner) c n
+(    ) p
+(// and same stand for  - S_IRGRP,S_IWGRP,S_IXGRP for group) c n
+(    ) p
+(// and same stand for  - S_IROTH,S_IWOTH,S_IXOTH for other) c n
+(    ) p
+(// its equivalent open is open\(filename,O_CREAT | O_WRONLY | O_TRUNC, mode\)) c n
+(    ) p
+(// creat return FD) c n
+(    fd = creat\(fileName, S_IRUSR | S_IWUSR\);) p n
+(    ) S
+(if) K
+( \(fd < 0\) {) p n
+(        perror\(") S
+(There is an Error while creating the file.) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(    ) S
+(// Print the file descriptor value and name) c n
+(    printf\(") p
+(Filename is : %s \\nDescriptor  value is : %d\\n) str
+(",fileName ,fd\);) p n
+() N
+(    ) S
+(// Close the file descriptor) c n
+(    close\(fd\);) p n
+(    ) S
+(// return success code) c n
+() p n
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question3.c) (Page 1/1) (Aug 20, 2024 11:46) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question3.c) (3/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 4
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 4. Write a program to open an existing file with read write mode. Try O_EXCL ) N
+(flag also.) N
+( ) p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <errno.h>) p n
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(char) k
+( fileName[250];  ) p
+(// Replace with your file name) c n
+(    ) p
+(int) k
+( fd;) p n
+(    printf\(") S
+(Enter the filename \\n) str
+("\);) p n
+(    ) S
+(if) K
+(\(fgets\(fileName,) p
+(sizeof) K
+(\(fileName\),stdin\)== ) p
+(NULL) K
+(\) {) p n
+(        perror\(") S
+(Error  while reading input) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+(    ) S
+(// O_CREAT Create the file if does not exist, always use O_RDWR to ensure) c n
+(    ) p
+(// that a file can be created if it does not exist) c n
+(    ) p
+(// O_EXCL - prevent from overwritng the file   ) c n
+(    fd = open\(fileName, O_RDWR | O_CREAT | O_EXCL, 0666\);) p n
+(    ) S
+(// now check the fd if it able to open or not) c n
+(    ) p
+(if) K
+( \(fd < 0\) {) p n
+() N
+(        ) S
+(// here we compare the error) c n
+(        ) p
+(// by compare errno with  EEXIST flag ) c n
+(        ) p
+(if) K
+( \(errno == EEXIST\) {) p n
+(            printf\(") S
+(File is already exists.\\nO_EXCL flag prevented opening the file.\\n.Please enter different ) str n
+(name\\n) S
+("\);) p n
+(        } ) S
+(else) K
+( {) p n
+(            perror\(") S
+(Error while opening the file) str
+("\);) p n
+(        }) N
+(        ) S
+(// return error code) c n
+(        ) p
+(return) K
+( 1;) p n
+(    }) N
+(    ) N
+(    printf\(") S
+(Congratulations: Your File is opened successfully with O_EXCL flag.\\n) str
+("\);) p n
+(    ) S
+(// Close the file) c n
+(    close\(fd\);) p n
+(    ) S
+(// return success code) c n
+(    ) p
+(return) K
+( 0;) p n
+(}) N
+(Question4.c) (Page 1/1) (Aug 20, 2024 11:46) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question4.c) (4/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 5
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 5. Write a program to create five new files with infinite loop. Execute the p) N
+(rogram in the background) N
+(// and check the file descriptor table at /proc/pid/fd.) N
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <string.h>) p n
+(// defining basefile name ) c n
+(#define) K
+( NAME_OF_THE_BASE_FILE ") p
+(testfile_Q5_) str
+(") p n
+(#define) K
+( EXTENSION ") p
+(.txt) str
+(") p n
+(// as explained in question setted the file count to 5 ) c n
+(#define) K
+( FILE_COUNT 5) p n
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(// declaring the array of int for file descriptor of size 5) c n
+(    ) p
+(int) k
+( file_descriptors_array[FILE_COUNT];) p n
+(    ) S
+(// declaring the array of char for filename ) c n
+(    ) p
+(char) k
+( filename[256];) p n
+() N
+(    ) S
+(int) k
+( i;) p n
+() N
+(    ) S
+(while) K
+( \(1\) {) p n
+(        ) S
+(for) K
+( \(i = 0; i < FILE_COUNT; ++i\) {) p n
+(            ) S
+(// snprintf\(\) used to format and store a string in a buffer with spe) c n
+(cified size ) N
+(            ) p
+(// 1st param filename is bufffer where formatted data is stored ) c n
+(            ) p
+(// 2nd param the size of the buffer) c n
+(            ) p
+(// 3rd param %s%d%s are replaces by the filename + number + extensio) c n
+(n) N
+(            ) p
+(// 4th param base name of the file) c n
+(            ) p
+(// 5th param number of the file) c n
+(            ) p
+(// 6th param extension) c n
+(            snprintf\(filename, ) p
+(sizeof) K
+(\(filename\), ") p
+(%s%d%s) str
+(", NAME_OF_THE_BASE_FIL) p n
+(E, i,EXTENSION\);) N
+(            ) S
+(// create a file with specified name and 0666 permission and open it) c n
+( with Read write permission) N
+(            file_descriptors_array[i] = open\(filename, O_CREAT | O_RDWR | O_APPE) p n
+(ND, 0666\);) N
+() N
+(            ) S
+(if) K
+( \(file_descriptors_array[i] < 0\) {) p n
+(                perror\(") S
+(There is an Error  while opening file) str
+("\);) p n
+(                exit\(EXIT_FAILURE\);) N
+(            }) N
+() N
+(            ) S
+(char) k
+( *tempdata = ") p
+(ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnop) str n
+(qrstuvwxyz) S
+(";) p n
+(            ) S
+(if) K
+( \(write\(file_descriptors_array[i], tempdata, strlen\(tempdata\)\) < 0) p n
+(\) {) N
+(                perror\(") S
+(Error writing to file) str
+("\);) p n
+(                close\(file_descriptors_array[i]\);) N
+(                exit\(EXIT_FAILURE\);) N
+(            }) N
+(        }) N
+() N
+(        ) S
+(// Sleeping for 5 sec so program do not use extra time) c n
+(        sleep\(5\);) p n
+() N
+(        ) S
+(// Closing all the opened files) c n
+(        ) p
+(for) K
+( \(i = 0; i < FILE_COUNT; ++i\) {) p n
+(Question5.c) (Page 1/2) (Aug 20, 2024 11:47) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(            close\(file_descriptors_array[i]\);) p n
+(        }) N
+(    }) N
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question5.c) (Page 2/2) (Aug 20, 2024 11:47) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question5.c) (5/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 6
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 6. Write a program to take input from STDIN and display on STDOUT. Use only r) N
+(ead/write system calls) N
+() p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <stdio.h>) p n
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(char) k
+( maxBufferSpace[500];) p n
+(    ) S
+(// Diff between stdin vs STDIN_FILENO) c n
+(    ) p
+(// 1. stdin - is just a file pointer to ' FIle * ' defined in <stdio.h>) c n
+(    ) p
+(//    it uses higher level I/O function like fscanf and fgets and fread) c n
+(    ) p
+(// 2. STDIN_FILENO is an integer constant representing the FD for standard i) c n
+(nput in <unistd.h>) N
+(    ) p
+(//    typically has the value `0`) c n
+(    ) p
+(//    it uses low level system calls like read and write) c n
+(    ) p
+(//    STDIN_FILE - interact with OS directly bypassing standard library buff) c n
+(ering) N
+(    ) p
+(//    so we have direct control over I/O) c n
+() p n
+(    ) S
+(// abstraction ) c n
+(    ) p
+(// std -> highlevel abstraction offers buffered I/O - slow) c n
+(    ) p
+(// stdin_fileno -> unbuffered I/O , direct access to system I/O,LL abstracti) c n
+(on - faster) N
+(    ) p
+(// Buffered I/O -> instead of transferring data immediately to or from file ) c n
+(or device) N
+(    ) p
+(// data is first stored in a buffer, once it is full then data is transferre) c n
+(d all at once) N
+(    ) p
+(// by doing this system calls are redunce but performance of program is decr) c n
+(eased) N
+(    ) p
+(// and for reading 'fgets' and 'fread' instead of making system call to feta) c n
+(ch data immediatley) N
+(    ) p
+(// it reads the block of data and requested data return to the program and p) c n
+(rocess so on) N
+() p n
+() N
+(    ) S
+(// there are 3 FD ) c n
+(    ) p
+(//     1. STDIN_FILENO \(0\){stdin} - take input from keyboard or pipe etc) c n
+(    ) p
+(//     2. STDOUT_FILENO \(1\){stdout} -  write o/p) c n
+(    ) p
+(//     3. STDERR_FILENO \(2\){stderr} - for error messages writing ) c n
+() p n
+(    ) S
+(// read is LL function used read from FD such as file,pipe. it is unbuffered) c n
+(    ) p
+(// on success return the no of bytes it reads. ) c n
+(    printf\(") p
+(Write Something \\n) str
+("\);) p n
+(    ssize_t bytesReadSize = read\(STDIN_FILENO, maxBufferSpace, ) S
+(sizeof) K
+(\(maxBufferS) p n
+(pace\)\);) N
+() N
+(    ) S
+(// Writing with ) c n
+(    ) p
+(// write\(fd,buff[],size\);) c n
+(    ) p
+(// this method is used to write in a file using FD ) c n
+(    ) p
+(// 3rd arg is provided to specify the length of data we are going to write) c n
+(    ) p
+(// on succress return the no of bytes it actually returned) c n
+(    ) p
+(// it is block I/O - it block the program untill it the data is written to t) c n
+(he file or device) N
+(    ) p
+(// handle partial writes  - if it block by system then check if no bytes  ar) c n
+(e fewer then requested then just retry) N
+(    write\(STDOUT_FILENO, maxBufferSpace, bytesReadSize\);) p n
+(    ) N
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question6.c) (Page 1/1) (Aug 30, 2024 18:52) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question6.c) (6/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 7
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 7. Write a program to copy file1 into file2 \($cp file1 file2\).) N
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <string.h>) p n
+(#define) K
+( MAX_BUF_SIZE 10024) p n
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(char) k
+( sourcefileName[250];) p n
+(    printf\(") S
+(Enter Source File name \\n) str
+("\);) p n
+(    ) S
+(if) K
+(\(fgets\(sourcefileName,) p
+(sizeof) K
+(\(sourcefileName\),stdin\) == ) p
+(NULL) K
+(\) {) p n
+(        perror\(") S
+(Error reading input) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+(    sourcefileName[strcspn\(sourcefileName,") S
+(\\n) str
+("\)] = ') p
+(\\0) str
+(';) p n
+(    ) S
+(char) k
+( destfileName[250];) p n
+(    printf\(") S
+(Enter Destination File name \\n) str
+("\);) p n
+(    fgets\(destfileName,) S
+(sizeof) K
+(\(destfileName\),stdin\);) p n
+(    destfileName[strcspn\(destfileName,") S
+(\\n) str
+("\)]=') p
+(\\0) str
+(';    ) p n
+(    ) S
+(int) k
+( sourceFileDesp = open\(sourcefileName, O_RDONLY\);) p n
+(    ) S
+(if) K
+( \(sourceFileDesp< 0\) {) p n
+(        perror\(") S
+(There is an error while openning a Source File:) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(    ) S
+(int) k
+( destFileDesp = open\(destfileName, O_WRONLY | O_CREAT | O_TRUNC, 0777\);) p n
+(    ) S
+(if) K
+( \(destFileDesp < 0\) {) p n
+(        perror\(") S
+(There is an error while openning a File) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+() N
+(    ) S
+(char) k
+( data[MAX_BUF_SIZE];) p n
+(    ssize_t bytesReaded = read\(sourceFileDesp, data, MAX_BUF_SIZE\);) N
+(    ) S
+(if) K
+( \(write\(destFileDesp, data, bytesReaded\) != bytesReaded\) {) p n
+(            perror\(") S
+(There is an error while Writing the data to Destination file) str
+("\);) p n
+(            ) S
+(return) K
+( 1;) p n
+(        }) N
+() N
+(    close\(sourceFileDesp\);) N
+(    close\(destFileDesp\);) N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question7.c) (Page 1/1) (Aug 30, 2024 19:14) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question7.c) (7/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 8
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 8. Write a program to open a file in read only mode, read line by line and di) N
+(splay each line as it is read.) N
+(// Close the file when end of file is reached) N
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <errno.h>) p n
+() N
+(#define) K
+( MAX_BUFFER_SIZE 10240) p n
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(// give a name for a file to point) c n
+(    ) p
+(// and open it with O_RDONLY access) c n
+(    ) p
+(// ######################) c n
+(    ) p
+(// a note for TAs please change the file name in your pc if your are checkin) c n
+(g) N
+(    ) p
+(int) k
+( fd = open\(") p
+(Q7Sfile.txt) str
+(", O_RDONLY\); ) p n
+(    ) S
+(// if fd is less than 0 that means there is an error) c n
+(    ) p
+(if) K
+( \(fd < 0\) {) p n
+(        perror\(") S
+(There is an Error  while opening  the file) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+(    ) S
+(// declaring the array of char to store tthe char byte by byte) c n
+(    ) p
+(char) k
+( buffer[MAX_BUFFER_SIZE];) p n
+(    ) S
+(// declaring ssize_t varibale to track record the no of with to read or read) c n
+(ed from file ) N
+(    ssize_t bytesRead, i = 0;) p n
+(    ) S
+(// declaring the line valriable and initilizing to 1) c n
+(    ) p
+(int) k
+( line =1;) p n
+(    ) S
+(// now reading the while using read fucntion ) c n
+(    ) p
+(// here we  passed the FD and buffer and buffer size) c n
+(    ) p
+(while) K
+(\(\(bytesRead = read\(fd, buffer, MAX_BUFFER_SIZE\)\)>0\){) p n
+(    ) S
+(// itareting through byte by byte or char by char to check a new line char ") c n
+(\\n") N
+(        ) p
+(for) K
+( \(ssize_t j = 0; j < bytesRead; ++j\) {) p n
+(            ) S
+(// if we encounter the new line char just enter in it) c n
+(            ) p
+(if) K
+( \(buffer[j]== ') p
+(\\n) str
+('\) {) p n
+(                ) S
+(// calculate the lenght from which index to which we have to rea) c n
+(d) N
+(                ) p
+(int) k
+( len = j-i+1;) p n
+(                ) S
+(// now print the line with line no ) c n
+(                ) p
+(// and print the string using char[] by defining the line size) c n
+(                ) p
+(// for 1st it will run from 0 to the first new line character' \\) c n
+(n') N
+(                ) p
+(// then it increament the i index from 0 to j+1 for next line an) c n
+(d so on) N
+(                printf\(") p
+(%d : %.*s\\n) str
+(",line++,len,buffer+i\);) p n
+(                ) S
+(char) k
+( ch;) p n
+(                ch = getchar\(\);) N
+(                ) S
+(// incrementing the i index to start of new linel) c n
+(                i = j+1;) p n
+(            }) N
+(            ) S
+(// because after some time i become greater than j) c n
+(            ) p
+(// i=0;) c n
+(        }) p n
+(        }) N
+(    ) S
+(// of this varible is less then it means there is an error while reading) c n
+(        ) p
+(if) K
+( \(bytesRead < 0\) {) p n
+(        perror\(") S
+(Please check again there is an Error while reading this file) str
+("\);) p n
+(Question8.c) (Page 1/2) (Aug 30, 2024 19:19) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(        ) p
+(// closing the FD and exiting with code 0) c n
+(        close\(fd\);) p n
+(        ) S
+(// return error code) c n
+(        ) p
+(return) K
+( 1;) p n
+(    }) N
+(    ) S
+(// close fd) c n
+(    close\(fd\);) p n
+(    ) S
+(// return success code ) c n
+(    ) p
+(return) K
+( 0;) p n
+(}) N
+(Question8.c) (Page 2/2) (Aug 30, 2024 19:19) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question8.c) (8/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 9
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 9. Write a program to print the following information about a given file.) N
+(// a. inode) N
+(// b. number of hard links) N
+(// c. uid) N
+(// d. gid) N
+(// e. size) N
+(// f. block size) N
+(// g. number of blocks) N
+(// h. time of last access) N
+(// i. time of last modification) N
+(// j. time of last change) N
+() p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <sys/stat.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <time.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <string.h>) p n
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(char) k
+( fileNameAndPath[250];) p n
+(    printf\(") S
+(Enter the file name \\n) str
+("\);) p n
+(    ) S
+(if) K
+( \(fgets\(fileNameAndPath, ) p
+(sizeof) K
+(\(fileNameAndPath\), stdin\) == ) p
+(NULL) K
+(\) {) p n
+(        perror\(") S
+(Error reading input) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+(        ) S
+(// Removeing the newline character ) c n
+() p n
+(    fileNameAndPath[strcspn\(fileNameAndPath, ") S
+(\\n) str
+("\)] = ') p
+(\\0) str
+(';) p n
+(    ) S
+(// file metadata are stored in a structure of type  below defined 'struct st) c n
+(at') N
+(    ) p
+(struct) k
+( stat fileStat;) p n
+() N
+(    ) S
+(// Get file status) c n
+(    ) p
+(if) K
+( \(stat\(fileNameAndPath, &fileStat\) < 0\) {) p n
+(        perror\(") S
+(There is an Error while getting the file status) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(    ) S
+(// Print file information) c n
+(    printf\(") p
+(1 .File Name is : %s\\n) str
+(", fileNameAndPath\);) p n
+(    printf\(") S
+(2. Inode number : %ld\\n) str
+(", \() p
+(long) k
+(\)fileStat.st_ino\);) p n
+(    printf\(") S
+(3. Number of hard links of giver file is : %ld\\n) str
+(", \() p
+(long) k
+(\)fileStat.st_nlink\);) p n
+(    printf\(") S
+(4. User ID \(UID\) : %d\\n) str
+(", fileStat.st_uid\);) p n
+(    printf\(") S
+(5. Group ID \(GID\) : %d\\n) str
+(", fileStat.st_gid\);) p n
+(    printf\(") S
+(6. Size of the File in Bytes: %ld bytes\\n) str
+(", \() p
+(long) k
+(\)fileStat.st_size\);) p n
+(    printf\(") S
+(7. Total Block size: %ld bytes\\n) str
+(", \() p
+(long) k
+(\)fileStat.st_blksize\);) p n
+(    printf\(") S
+(8. Total Number of blocks: %ld\\n) str
+(", \() p
+(long) k
+(\)fileStat.st_blocks\);) p n
+(    ) S
+(// ctime\(\) function is used to convert the time to a human readable format) c n
+(    printf\(") p
+(9. Last accessed at: %s) str
+(", ctime\(&fileStat.st_atime\)\);) p n
+(    printf\(") S
+(10. Last modified at : %s) str
+(", ctime\(&fileStat.st_mtime\)\);) p n
+(    printf\(") S
+(11. Last changed at: %s) str
+(", ctime\(&fileStat.st_ctime\)\);) p n
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question9.c) (Page 1/1) (Aug 30, 2024 19:21) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question9.c) (9/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 10
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 10. Write a program to open a file with read write mode, write 10 bytes, move) N
+( the file pointer by 10) N
+(// bytes \(use lseek\) and write again 10 bytes.) N
+(// a. check the return value of lseek) N
+(// b. open the file with od and check the empty spaces in between the data.) N
+() p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <string.h>) p n
+(#include) K
+( <stdlib.h>) p n
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(int) k
+( fd;) p n
+(    ) S
+(//ssize_t is signed data type used to track record ) c n
+(    ) p
+(//number of bytes written and readed by system call "read\(\)" or "write\(\)") c n
+(    ssize_t bytes_written;) p n
+(    ) S
+(// off_t is data type used for file sie and offset) c n
+(    off_t offset;) p n
+() N
+(    ) S
+(const) K
+( ) p
+(char) k
+( *data1 = ") p
+(TEMPDATA01) str
+(";  ) p
+(// 10 bytes of data we will add first) c n
+(    ) p
+(const) K
+( ) p
+(char) k
+( *data2 = ") p
+(TEMPDATA02) str
+(";  ) p
+(// 10 bytes of data we will add later) c n
+(    ) p
+(char) k
+( fileName[250];) p n
+(    printf\(") S
+(Enter the file name \\n) str
+("\);) p n
+(    ) S
+(if) K
+(\(fgets\(fileName,) p
+(sizeof) K
+(\(fileName\),stdin\)== ) p
+(NULL) K
+(\) {) p n
+(        perror\(") S
+(Error  while reading input) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+(    ) S
+(// removing the newline character ) c n
+(    fileName[strcspn\(fileName ,") p
+(\\n) str
+("\)] = ') p
+(\\0) str
+(';) p n
+(    ) S
+(// Open the file in read and write mode) c n
+(    ) p
+(// or  create  new file if it does not exist) c n
+(    ) p
+(// and truncate to 0 length) c n
+(    fd = open\(fileName, O_RDWR | O_CREAT | O_TRUNC, 0777\);) p n
+(    ) S
+(if) K
+( \(fd < 0\) {) p n
+(        perror\(") S
+(Error while opening the file) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(    ) S
+(const) K
+( ) p
+(char) k
+( *tempData = ") p
+(-------------------------------------------------------) str n
+(-------) S
+(";) p n
+(    ) S
+(// writing temp data in so while using lseek no error occur in file) c n
+(    bytes_written = write\(fd, tempData, strlen\(tempData\)\);) p n
+(    ) S
+(if) K
+( \(bytes_written < 0\) {) p n
+(        perror\(") S
+(Error while writing Temp data to the file) str
+("\);) p n
+(        close\(fd\);) N
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(    ) S
+(// now just setting the cuurent point to middle of data ) c n
+(    ) p
+(// otherwise if i directly use lseek on empty position ) c n
+(    ) p
+(// it will print unknown char in between that causes file error) c n
+(    offset = lseek\(fd, -30, SEEK_CUR\);) p n
+(    ) S
+(if) K
+( \(offset == \(off_t\)-1\) {) p n
+(        perror\(") S
+(There is an Error while using lseek) str
+("\);) p n
+(        ) S
+(// close FD and exit with failure code) c n
+(        close\(fd\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(Question10.c) (Page 1/3) (Aug 30, 2024 19:23) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(    ) p
+(// Now write the first 10 bytes to the new file) c n
+(    ) p
+(// fd - targeted file) c n
+(    ) p
+(// data1 - buffer data we are going to write) c n
+(    ) p
+(// 10 - size of bytes count) c n
+(    bytes_written = write\(fd, data1, 10\);) p n
+(    ) S
+(if) K
+( \(bytes_written < 0\) {) p n
+(        perror\(") S
+(Error writing to the file) str
+("\);) p n
+(        close\(fd\);) N
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(    ) S
+(// Move the file pointer by 10 bytes using lseek\(\)) c n
+(    ) p
+(// lseek\(\) uses whence arg to indicate how the offset argu should be interpr) c n
+(eted) N
+(    ) p
+(//  when changing the file pointer position) c n
+(    ) p
+(// 1. SEEK_SET - offset is set relative to starting of file) c n
+(    ) p
+(//    lseek\(fd,10,SEEK_SET\) - move file pointer to 10 bytes from start of th) c n
+(e file) N
+(    ) p
+(// 2. SEEK_CUR - offset is applied to current file position) c n
+(    ) p
+(//    offset can be mode forward or backward from current position) c n
+(    ) p
+(//    lseek\(fd, -5, SEEK_CUR\) // move file pointer 5 bytes backward from cur) c n
+(rent position) N
+(    ) p
+(// 3. SEEK_END - offset is applied to end of the file. file pointer is moved) c n
+( to a position) N
+(    ) p
+(//    'offset' bytes from the end of file . it often used for appendinf data) c n
+( to a file) N
+(    ) p
+(//    lseek\(fd,0,SEEK_END\) // file pointer is moved to end of the file) c n
+() p n
+() N
+(    ) S
+(// here we are just moving the file pointer to 10th position from start) c n
+(    offset = lseek\(fd, 10, SEEK_CUR\);) p n
+(    ) S
+(if) K
+( \(offset == \(off_t\)-1\) {) p n
+(        perror\(") S
+(There is an Error while using lseek) str
+("\);) p n
+(        ) S
+(// close FD and exit with failure code) c n
+(        close\(fd\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+(    ) S
+(// it will print the new position of offset) c n
+(    printf\(") p
+(lseek\(\) returned the new position  : %ld\\n) str
+(", \() p
+(long) k
+(\)offset\);) p n
+() N
+(    ) S
+(// now again write the new 10 bytes in files) c n
+(    ) p
+(// on success it will return the no bytes it writes) c n
+(    ) p
+(// failure it will return -1) c n
+(    bytes_written = write\(fd, data2, 10\);) p n
+(    ) S
+(if) K
+( \(bytes_written < 0\) {) p n
+(        perror\(") S
+(Error writing to the file) str
+("\);) p n
+(        ) N
+(        ) S
+(// error caused so just close the FD and) c n
+(        ) p
+(//  close the program with exit code 1\(error\)) c n
+(        close\(fd\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(    ) S
+(// Close the file) c n
+(    close\(fd\);) p n
+() N
+(    ) S
+(// Run the 'od' command to check the file contents) c n
+(    ) p
+(char) k
+( cmd[300];) p n
+(    snprintf\(cmd, ) S
+(sizeof) K
+(\(cmd\), ") p
+(od -c %s) str
+(", fileName\);) p n
+(    printf\(") S
+(File Data:\\n) str
+("\);) p n
+(    ) N
+(    ) S
+(return) K
+( 0;) p n
+(Question10.c) (Page 2/3) (Aug 30, 2024 19:23) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question10.c) (10/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (3) 11
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(}) p n
+(Question10.c) (Page 3/3) (Aug 30, 2024 19:23) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question10.c) (11/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 12
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 11. Write a program to open a file, duplicate the file descriptor and append ) N
+(the file with both the) N
+(// descriptors and check whether the file is updated properly or not.) N
+(// a. use dup) N
+(// b. use dup2) N
+(// c. use fcntl) N
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <string.h>) p n
+() N
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(// Defining the name and address of the file ) c n
+(    ) p
+(char) k
+( fileAdd[]=") p
+(testfile_Q11.txt) str
+(";) p n
+() N
+(    ) S
+(// open\(\) function needed file name and address) c n
+(    ) p
+(// access control flag) c n
+(    ) p
+(// O_WRONLY = open file for write only access) c n
+(    ) p
+(// O_APPEND = open in append mode only - data is added at the end of the fil) c n
+(e) N
+(    ) p
+(// O_CREAT =  creat file if not exist - ) c n
+(    ) p
+(// O_EXCL =  fail to create a file if already exist ) c n
+(    ) p
+(// O_RDONLY = open in only read mode) c n
+(    ) p
+(// O_RDWR =  for reading and writing both) c n
+(    ) p
+(// O_TRUNC = if file is there then open it and truncate the lenght to 0) c n
+(    ) p
+(// O_NONBLOCK = open in non-blocking mode - used with pipes and device file.) c n
+(    ) p
+(// O_SYNC = write to files are syncronised- write phycisally written to disk) c n
+( before write call returns) N
+(    ) p
+(// O_DSYNC = file data is syncronized not metadata. focus only writing actua) c n
+(l fata) N
+(    ) p
+(// O_NOFOLLOW = do not follow symbolic links) c n
+(    ) p
+(// O_CLOEXEC = close file descriptor when executing new program - it ensure ) c n
+(FD is not inherited by child process ) N
+(    ) p
+(// O_TMPFILE = create a temp file that do not linked to any directory - it d) c n
+(elete automatically) N
+(    ) p
+(// O_DIRECTORY = open only if path refer to directory) c n
+(    ) p
+(// O_NOCTTY = if file is terminal device do not make it the contronlling ter) c n
+(minal for process) N
+(    ) p
+(// , 777,555,456 these are the permissions) c n
+(    ) p
+(// open\(\) takes address, controll flag and permission) c n
+(    ) p
+(// and return File descriptor ) c n
+(    ) p
+(// file descriptor is a non negative int value refer to the ) c n
+(    ) p
+(// open file of an running process) c n
+(    ) p
+(// normally there are below File Descriptors by defaults) c n
+(    ) p
+(// these three standard file descriptors that are automatically opened for e) c n
+(ach process) N
+(        ) p
+(// 0: Standard Input \(stdin\) \342M-^@M-^S Used for reading input.) c n
+(        ) p
+(// 1: Standard Output \(stdout\) \342M-^@M-^S Used for writing output.) c n
+(        ) p
+(// 2: Standard Error \(stderr\) \342M-^@M-^S Used for writing error messages.) c n
+(    ) p
+(// now after opening new file fd will point to 3 and 4 and so on .....) c n
+(    ) p
+(int) k
+( fd = open\( fileAdd,O_WRONLY | O_CREAT | O_TRUNC, 0644\);) p n
+(    ) S
+(// if fd is smaller than 0 means file is not able to open) c n
+(    ) p
+(//perror\(\) print error message related to system call and library func) c n
+(    ) p
+(//exit\(\) terminate program and provide an exit status) c n
+(    ) p
+(//   1.EXIT_FAILURE - internally value is 1 \(non zero\)) c n
+(    ) p
+(//   2.EXIT_SUCCESS - represent 0 - means success) c n
+(    ) p
+(if) K
+( \(fd < 0\) { perror\(") p
+(open) str
+("\); exit\(EXIT_FAILURE\); }) p n
+() N
+(Question11.c) (Page 1/3) (Aug 29, 2024 19:24) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(    ) p
+(// dup\(fd\) - LL file management - provide ability to create multiple referen) c n
+(ce to same file or resource) N
+(    ) p
+(// dup2\(fd,10\) - unlike dup which return smallest available FD and ) c n
+(    ) p
+(// dup2 allow you to specify the exact file descriptor number you want to us) c n
+(e ) N
+(    ) p
+(// on faliure return -1 otherwise return new fd which is pointing to same FD) c n
+( as oldFD) N
+(    ) p
+(int) k
+( fd_dup = dup\(fd\);) p n
+(    ) S
+(int) k
+( fd_dup2 = dup2\(fd, 10\);) p n
+(    ) S
+(// fcntl\( fd cmd arg\)) c n
+(    ) p
+(// it is used to provide various control operations on FD, duplicating FD,Ch) c n
+(anging file status flags, and obtaining info about FD) N
+(    ) p
+(// there are some comman cmd ) c n
+(    ) p
+(// 1. F_DUPED - FD ki smallesst available FD number jo equall or greater ho ) c n
+(specified value ka usko duplicate karo) N
+(    ) p
+(// 2. F_DUPFD_CLOEXEC - same as above and also FD_CLOEXEC flag set) c n
+(    ) p
+(// 3. F_GETFD - get FD flags) c n
+(    ) p
+(// 4. F_SETFD - set FD flag) c n
+(    ) p
+(// 5. F_GETFL - get file status flag \(O_RDONLY,O_WRONLY\)) c n
+(    ) p
+(// 6. F_SETFL - set file status) c n
+(    ) p
+(// 7. F_GETLK - get info about file lock) c n
+(    ) p
+(// 8. F_SETLK - set or remove file lock) c n
+(    ) p
+(// 9. F_SETLKW - set or remove file lock or wait if necessary) c n
+(    ) p
+(// 10. F_GETOWN - get procrss id or procress group ID that will receice SIGU) c n
+(RG signals) N
+(    ) p
+(// 11. F_SETOWN -  set process or Process group ID ) c n
+(    ) p
+(int) k
+( fd_fcntl = fcntl\(fd, F_DUPFD, 0\);) p n
+() N
+(    ) S
+(// Writing with different descriptors) c n
+(    ) p
+(// write\(fd,buff[],size\);) c n
+(    ) p
+(// this method is used to write in a file using FD ) c n
+(    ) p
+(// and 3rd arg is provided to specify the length og data we are going to wri) c n
+(te) N
+() p n
+(    write\(fd, ") S
+(Original data\\n) str
+(", 14\);) p n
+(    write\(fd_dup, ") S
+(dup data \\n) str
+(", 10\);) p n
+(    write\(fd_dup2, ") S
+(dup2 data\\n) str
+(", 10\);) p n
+(    write\(fd_fcntl, ") S
+(fcntl data\\n) str
+(", 11\);) p n
+(    ) S
+(// it is used to close the FD and release all the lock and resource which be) c n
+(ing used by FD) N
+(    ) p
+(// on sucecss return 0 else 1 ) c n
+(    close\(fd\); close\(fd_dup\); close\(fd_dup2\); close\(fd_fcntl\);) p n
+() N
+(    ) S
+(// Check the content of the file) c n
+(    ) p
+(// again opening file with readonly flag and default permissions and if file) c n
+( exist then update  fd) N
+(    fd = open\(fileAdd, O_RDONLY\);) p n
+(    ) S
+(// declare buffer to store the data) c n
+(    ) p
+(char) k
+( buffer[1024];) p n
+(    ) S
+(// ssize_t - it is a signet integer which repreasent the size of block or th) c n
+(e number of bytes reads or writter) N
+(    ) p
+(// here we are reading data from fd and copies to buffer ) c n
+(    ) p
+(//  buffer is block of memory that we have allotted but ) c n
+(    ) p
+(// after reading fd we need to add null pointer manually to the end) c n
+(    ) p
+(// we specify -1 in the end to store null pointer ) c n
+(    ) p
+(// last arg of read\(\) tells us how many maximum bytes to read) c n
+(    ssize_t bytes_read = read\(fd, buffer, ) p
+(sizeof) K
+(\(buffer\) - 1\);) p n
+(    ) S
+(// if ssize_t return less than 0 then it means there is an error) c n
+(    ) p
+(// close fd and exit the program  with exit code) c n
+(    ) p
+(if) K
+( \(bytes_read < 0\) { perror\(") p
+(read) str
+("\); close\(fd\); exit\(EXIT_FAILURE\); }) p n
+(    ) S
+(// set the null pointer to the end wafter how muhc bytes we have been read) c n
+(    buffer[bytes_read] = ') p
+(\\0) str
+(';) p n
+(Question11.c) (Page 2/3) (Aug 29, 2024 19:24) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question11.c) (12/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (3) 13
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(    ) p
+(// just print it) c n
+(    printf\(") p
+(File content:\\n%s) str
+(", buffer\);) p n
+(    ) S
+(// close fd) c n
+(    close\(fd\);) p n
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question11.c) (Page 3/3) (Aug 29, 2024 19:24) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question11.c) (13/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 14
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 12. Write a program to find out the opening mode of a file. Use fcntl.) N
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <unistd.h>) p n
+() N
+(void) k
+( printFileMode\() p
+(int) k
+( flags\) {) p n
+(    ) S
+(// Check the access mode \(O_RDONLY, O_WRONLY, O_RDWR\)) c n
+(    ) p
+(// O_ACCMODE is a bitmask , we use it to exrtact the access mode from flags ) c n
+(    ) p
+(// O_ACCMODE is only mask out and extract accessmode \(read ,write , read/wri) c n
+(tes\)) N
+(    ) p
+(// for other flags we need to AND them with flag ) c n
+(    ) p
+(int) k
+( accessMode = flags & O_ACCMODE;) p n
+(    ) S
+(if) K
+( \(accessMode == O_RDONLY\) {) p n
+(        printf\(") S
+(O_RDONLY Flag : File is opened in read-only mode.\\n) str
+("\);) p n
+(    } ) N
+(    ) S
+(else) K
+( ) p
+(if) K
+( \(accessMode == O_WRONLY\) {) p n
+(        printf\(") S
+(O_WRONLY FLAG : File is opened in write-only mode.\\n) str
+("\);) p n
+(    } ) N
+(    ) S
+(else) K
+( ) p
+(if) K
+( \(accessMode == O_RDWR\) {) p n
+(        printf\(") S
+(O_RDWR Flag : File is opened in read-write mode.\\n) str
+("\);) p n
+(    } ) N
+(    ) S
+(else) K
+( {) p n
+(        printf\(") S
+(Unknown access mode.\\n) str
+("\);) p n
+(    }) N
+(    ) N
+(    ) S
+(// printf\("%d \\n",flags\);) c n
+(    ) p
+(//  printf\("%d \\n",O_APPEND\);) c n
+(    ) p n
+() N
+(    ) S
+(// Check additional flags) c n
+(    ) p
+(// here other flags are needed to be AND with FLAGs\(O_APPEND etc\) to check) c n
+(    ) p
+(// these flas are appended to the last are not the part of access mode of fi) c n
+(le ) N
+(    ) p
+(if) K
+( \(flags & O_APPEND\) {) p n
+(        printf\(") S
+(O_APPEND is set: Writes will append to the end of the file.\\n) str
+("\);) p n
+(    }) N
+(    ) S
+(if) K
+( \(flags & O_NONBLOCK\) {) p n
+(        printf\(") S
+(O_NONBLOCK is set: Non-blocking mode is enabled.\\n) str
+("\);) p n
+(    }) N
+(    ) S
+(if) K
+( \(flags & O_SYNC\) {) p n
+(        printf\(") S
+(O_SYNC is set: Writes are synchronized.\\n) str
+("\);) p n
+(    }) N
+(}) N
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(char) k
+( fileAdd[]=") p
+(Question13.c) str
+(";) p n
+(    ) S
+(// Open a file with specific flags) c n
+(    ) p
+(// open file with write and read only and append flag ) c n
+(    ) p
+(// and adding O_CREAT flag if file not exist) c n
+(    ) p
+(int) k
+( fd = open\(fileAdd, O_WRONLY | O_APPEND| O_CREAT, 0777\);) p n
+(    ) S
+(// if file not open then exit program) c n
+(    ) p
+(if) K
+( \(fd < 0\) {) p n
+(        perror\(") S
+(Error while opening file) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(    ) S
+(// Use fcntl to get the file status flags) c n
+(    ) p
+(// when we pass FD and F_GETFL parameter ) c n
+(    ) p
+(// fcntal return us the flag is currently is being used by FD) c n
+(    ) p
+(int) k
+( flags = fcntl\(fd, F_GETFL\);) p n
+(Question12.c) (Page 1/2) (Aug 30, 2024 19:38) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(    ) p
+(// report error if any error found) c n
+(    ) p
+(if) K
+( \(flags < 0\) {) p n
+(        perror\(") S
+(Error getting file flags) str
+("\);) p n
+(        close\(fd\);) N
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+() N
+(    printFileMode\(flags\);) N
+() N
+(    ) S
+(// Close the file descriptor) c n
+(    close\(fd\);) p n
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question12.c) (Page 2/2) (Aug 30, 2024 19:38) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question12.c) (14/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 15
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 13. Write a program to wait for a STDIN for 10 seconds using select. Write a ) N
+(proper print statement to) N
+(// verify whether the data is available within 10 seconds or not \(check in $man ) N
+(2 select\).) N
+() p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <sys/select.h>) p n
+(#include) K
+( <unistd.h>) p n
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(//it is datatype used to represent a set of FD) c n
+(    ) p
+(// it allow use to track a FD to monitor for an activity. FD ie - such as so) c n
+(cket,pipes or standard input/output) N
+(    fd_set readfds;) p n
+(    ) S
+(// it is used to represent time intervel) c n
+(    ) p
+(// first value define seconds and second value define microsecond) c n
+(    ) p
+(// here {10,0} it is 10 sec and 0 ms) c n
+(    ) p
+(struct) k
+( timeval timeout = {10, 0};  ) p
+(// 10 seconds timeout) c n
+() p n
+(    ) S
+(// this function used to clear the fd_set and reset it to empty) c n
+(    FD_ZERO\(&readfds\);) p n
+(    ) S
+(//using this function will set fd to fd_set) c n
+(    ) p
+(// there are 3 FD ) c n
+(    ) p
+(//     1. STDIN_FILENO \(0\){stdin} - take input from keyboard or pipe etc) c n
+(    ) p
+(//     2. STDOUT_FILENO \(1\){stdout} -  write o/p) c n
+(    ) p
+(//     3. STDERR_FILENO \(2\){stderr} - for error messages writing ) c n
+(    ) p
+(// by setting sdtin to set now program will understood that we want to monit) c n
+(er the input) N
+(    FD_SET\(STDIN_FILENO, &readfds\);) p n
+() N
+() N
+(    printf\(") S
+(Waiting for input on STDIN for 10 seconds...\\n) str
+("\);) p n
+(   ) N
+(    ) S
+(// select syntex are alike) c n
+(    ) p
+(// select\(nfds,readfd,writefd,exceptfd,timeinterval\)) c n
+(    ) p
+(// STDIN_FILENO - {select\(\) requires the highest FD number +1 because FDs ar) c n
+(e zero based indecies) N
+(    ) p
+(// like if want to moniter 0 index then we need to specify 1 as nfds }) c n
+(    ) p
+(// timeout -  it will wait till the time we mentioned) c n
+(    ) p
+(// if data available before time mentioned then it will return positive valu) c n
+(e) N
+(    ) p
+(// if no data is given it return 0) c n
+(    ) p
+(// any error occur  then it will return -1) c n
+(    ) p
+(int) k
+( retval = select\(STDIN_FILENO + 1, &readfds, ) p
+(NULL) K
+(, ) p
+(NULL) K
+(, &timeout\);) p n
+() N
+(    ) S
+(if) K
+( \(retval == -1\) {) p n
+(        perror\(") S
+(select\(\)) str
+("\);) p n
+(    } ) S
+(else) K
+( ) p
+(if) K
+( \(retval == 0\) {) p n
+(        printf\(") S
+(No data within 10 seconds.\\n) str
+("\);) p n
+(    } ) S
+(else) K
+( {) p n
+(        printf\(") S
+(Data is available on STDIN.\\n) str
+("\);) p n
+(    }) N
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question13.c) (Page 1/1) (Aug 20, 2024 11:50) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question13.c) (15/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 16
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 14 Write a program to find the type of a file.) N
+(// a. Input should be taken from command line.) N
+(// b. program should be able to identify any type of a file.) N
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <sys/stat.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <string.h>) p n
+(// Function to print the file type) c n
+(void) k
+( printFileType\() p
+(struct) k
+( stat mode\) {) p n
+(    ) S
+(if) K
+( \(S_ISREG\(mode.st_mode\)\) {) p n
+(        printf\(") S
+(Regular file\\n) str
+("\);) p n
+(    } ) S
+(else) K
+( ) p
+(if) K
+( \(S_ISDIR\(mode.st_mode\)\) {) p n
+(        printf\(") S
+(Directory\\n) str
+("\);) p n
+(    } ) S
+(else) K
+( ) p
+(if) K
+( \(S_ISLNK\(mode.st_mode\)\) {) p n
+(        printf\(") S
+(Symbolic link\\n) str
+("\);) p n
+(    } ) S
+(else) K
+( ) p
+(if) K
+( \(S_ISCHR\(mode.st_mode\)\) {) p n
+(        printf\(") S
+(Character device\\n) str
+("\);) p n
+(    } ) S
+(else) K
+( ) p
+(if) K
+( \(S_ISBLK\(mode.st_mode\)\) {) p n
+(        printf\(") S
+(Block device\\n) str
+("\);) p n
+(    } ) S
+(else) K
+( ) p
+(if) K
+( \(S_ISFIFO\(mode.st_mode\)\) {) p n
+(        printf\(") S
+(FIFO/pipe\\n) str
+("\);) p n
+(    } ) S
+(else) K
+( ) p
+(if) K
+( \(S_ISSOCK\(mode.st_mode\)\) {) p n
+(        printf\(") S
+(Socket\\n) str
+("\);) p n
+(    } ) S
+(else) K
+( {) p n
+(        printf\(") S
+(Unknown file type\\n) str
+("\);) p n
+(    }) N
+(   ) N
+(}) N
+() N
+(int) k
+( main\(\) {) p n
+(  ) N
+(    printf\(") S
+(Enter the file name with path \\nor if file is in same directory just enter the name of file. \\nFile name s) str n
+(hould be less than 255 char\\n) S
+("\);) p n
+(    ) S
+(char) k
+( fileName[255];) p n
+(    fgets\(fileName,) S
+(sizeof) K
+(\(fileName\),stdin\);) p n
+(    fileName[strcspn\(fileName,") S
+(\\n) str
+("\)] = ') p
+(\\0) str
+(';) p n
+(    ) S
+(struct) k
+( stat file_stat;) p n
+() N
+(    ) S
+(// Get file status) c n
+(    ) p
+(// stat\(\) function is used to obtain info about a file.) c n
+(    ) p
+(// it fills struct stat) c n
+(    ) p
+(// return on success 0 else 1) c n
+(    ) p
+(// internal structure of struct stat is look like this) c n
+(    ) p
+(//     struct stat {) c n
+(    ) p
+(//     dev_t     st_dev;     /* Device ID of the file */) c n
+(    ) p
+(//     ino_t     st_ino;     /* Inode number */) c n
+(    ) p
+(//     mode_t    st_mode;    /* File type and mode \(permissions\) */) c n
+(    ) p
+(//     nlink_t   st_nlink;   /* Number of hard links */) c n
+(    ) p
+(//     uid_t     st_uid;     /* User ID of the owner */) c n
+(    ) p
+(//     gid_t     st_gid;     /* Group ID of the owner */) c n
+(    ) p
+(//     dev_t     st_rdev;    /* Device ID \(if file is character or block spe) c n
+(cial\) */) N
+(    ) p
+(//     off_t     st_size;    /* Total size of the file in bytes */) c n
+(    ) p
+(//     blksize_t st_blksize; /* Block size for filesystem I/O */) c n
+(    ) p
+(//     blkcnt_t  st_blocks;  /* Number of 512-byte blocks allocated */) c n
+(    ) p
+(//     time_t    st_atime;   /* Time of last access */) c n
+(    ) p
+(//     time_t    st_mtime;   /* Time of last modification */) c n
+(    ) p
+(//     time_t    st_ctime;   /* Time of last status change */) c n
+(    ) p
+(// };) c n
+(Question14.c) (Page 1/2) (Aug 30, 2024 20:31) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(    ) p
+(if) K
+( \(stat\(fileName, &file_stat\) != 0\) {) p n
+(        perror\(") S
+(stat) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(    ) S
+(// Print file type) c n
+(    printFileType\(file_stat\);) p n
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question14.c) (Page 2/2) (Aug 30, 2024 20:31) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question14.c) (16/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 17
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 15. Write a program to display the environmental variable of the user \(use en) N
+(viron\).) N
+(#include) K
+( <stdio.h>) p n
+() N
+() N
+(// environ is a global variable provided by the system) c n
+(// it points to an array of string ) N
+(// extern keyword used to declare the variable without defining it) N
+(// it indicate that 'environ' is a global variable defined in another source fil) N
+(e) N
+(// so store the reference of that file in our file) N
+(// it will link it during compile time ) N
+(extern) K
+( ) p
+(char) k
+( **environ; ) p
+(// Declare the external variable environ) c n
+() p n
+(int) k
+( main\(\) {) p n
+() N
+(    printf\(") S
+(Environmental Variables:\\n) str
+("\);) p n
+(    ) S
+(// declaring and initilising a Pointer to the environment variable list) c n
+(    ) p
+(// Iterate through the environment variable list using for loop) c n
+(    ) p
+(// Print each environment variable ) c n
+(    ) p
+(// Move to the next environment variable till it is available) c n
+(    ) p
+(for) K
+( \() p
+(char) k
+( **env = environ; *env; ++env\) {) p n
+(        printf\(") S
+(%s\\n) str
+(", *env\);) p n
+(    }) N
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question15.c) (Page 1/1) (Aug 20, 2024 11:51) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question15.c) (17/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 18
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 6. Write a program to perform mandatory locking.) N
+(// a. Implement write lock) N
+(// b. Implement read lock) N
+() p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <sys/types.h>) p n
+(#include) K
+( <sys/stat.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <string.h>) p n
+(void) k
+( releaselock\() p
+(int) k
+( fd,off_t offset, size_t size\){) p n
+(    ) S
+(struct) k
+( flock lock;) p n
+(    lock.l_type=F_UNLCK;) N
+(    lock.l_whence=SEEK_SET;) N
+(    lock.l_start=offset;) N
+(    lock.l_len = size;) N
+(    fcntl\(fd,F_SETLK,&lock\);) N
+() N
+(}) N
+(void) k
+( setlock\() p
+(int) k
+( fd, ) p
+(int) k
+( type,off_t offset,size_t size\){) p n
+(    ) S
+(struct) k
+( flock lock;) p n
+(    lock.l_type= type;) N
+(    lock.l_whence=SEEK_SET;) N
+(    lock.l_start=offset;) N
+(    lock.l_len = size;) N
+(    fcntl\(fd,F_SETLKW,&lock\);) N
+(}) N
+(void) k
+( writelock\() p
+(int) k
+( fd,off_t offset,size_t size\){) p n
+(    setlock\(fd,F_WRLCK,offset,size\);) N
+(    printf\(") S
+(file is locked in write mode\\n) str
+("\);) p n
+(    ) S
+(char) k
+( *data = ") p
+(THE DATA IS WRITTEN BY WRITELOCK FUNCTION DEFINED BY ABHAY) str
+(";) p n
+(    printf\(") S
+(Press enter to write ) str
+("\);) p n
+(    getchar\(\);) N
+(    getchar\(\);) N
+(    write\(fd,data,strlen\(data\)\);) N
+(    printf\(") S
+(Write operation done. Releasing the lock) str
+("\);) p n
+(    releaselock\(fd,offset,size\);) N
+(}) N
+(void) k
+( readlock\() p
+(int) k
+( fd,off_t offset,size_t size\){) p n
+(     setlock\(fd,F_RDLCK,offset,size\);) N
+(     printf\(") S
+(File is locked in Reading mode \\n) str
+("\);) p n
+(     ) S
+(char) k
+( buff[500];) p n
+(     printf\(") S
+(Hit enter to read the file \\n) str
+("\);) p n
+(     getchar\(\);) N
+(     getchar\(\);) N
+(     lseek\(fd,0,SEEK_SET\);) N
+(     ssize_t bytes_read= read\(fd,buff,) S
+(sizeof) K
+(\(buff\)-1\);) p n
+(     buff[bytes_read]=') S
+(\\0) str
+(';) p n
+(     printf\(") S
+(Data Read from file : \\n\\n%s \\n) str
+(",buff\);) p n
+(     ) N
+(     printf\(") S
+(Now Releasing the lock\\n) str
+("\);) p n
+() N
+(    releaselock\(fd,offset,size\);) N
+(}) N
+(int) k
+( main\(\){) p n
+(    ) S
+(int) k
+( fd = open\(") p
+(./Question16.txt) str
+(",O_RDWR,0666\);) p n
+(    ) S
+(if) K
+(\(fd<0\) {) p n
+(        perror\(") S
+(open) str
+("\);) p n
+(        exit\(1\);) S
+(// fail to open) c n
+(Question16.c) (Page 1/2) (Aug 30, 2024 10:30) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(    }) p n
+(    ) S
+(int) k
+( choice;) p n
+(    printf\(") S
+(Enter your choice\\n1\).Write lock\\n2\).Read lock) str
+("\);) p n
+(    scanf\(") S
+(%d) str
+(",&choice\);) p n
+(    ) S
+(switch) K
+( \(choice\)) p n
+(    {) N
+(    ) S
+(case) K
+( 1: writelock\(fd,100,0\); ) p
+(break) K
+(;) p n
+(    ) S
+(case) K
+( 2: readlock\(fd,100,0\); ) p
+(break) K
+(;) p n
+(    ) S
+(default) K
+(: ) p
+(break) K
+(;) p n
+(    }) N
+() N
+(    close\(fd\);) N
+(    ) S
+(return) K
+( 0;) p n
+(}) S
+(Question16.c) (Page 2/2) (Aug 30, 2024 10:30) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question16.c) (18/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 19
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(//17. Write a program to simulate online ticket reservation. Implement write loc) N
+(k) N
+(// Write a program to open a file, store a ticket number and exit. Write a separ) N
+(ate program, to) N
+(// open the file, implement write lock, read the ticket number, increment the nu) N
+(mber and print) N
+(// the new ticket number then close the file.) N
+() p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <sys/types.h>) p n
+(#include) K
+( <sys/stat.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <string.h>) p n
+() N
+(void) k
+( releaselock\() p
+(int) k
+( fd,off_t offset, size_t size\){) p n
+(    ) S
+(struct) k
+( flock lock;) p n
+(    lock.l_type=F_UNLCK;) N
+(    lock.l_whence=SEEK_SET;) N
+(    lock.l_start=offset;) N
+(    lock.l_len = size;) N
+(    fcntl\(fd,F_SETLK,&lock\);) N
+() N
+(}) N
+(void) k
+( setlock\() p
+(int) k
+( fd, ) p
+(int) k
+( type,off_t offset,size_t size\){) p n
+(    ) S
+(struct) k
+( flock lock;) p n
+(    lock.l_type= type;) N
+(    lock.l_whence=SEEK_SET;) N
+(    lock.l_start=offset;) N
+(    lock.l_len = size;) N
+(    fcntl\(fd,F_SETLKW,&lock\);) N
+(}) N
+(void) k
+( writelock\() p
+(int) k
+( fd,off_t offset,size_t size\){) p n
+(    setlock\(fd,F_WRLCK,offset,size\);) N
+(    ) S
+(char) k
+( buff[250];) p n
+(    ssize_t bytesReaded =  read\(fd,buff,) S
+(sizeof) K
+(\(buff\)-1\);) p n
+(    ) S
+(// if data present the truncate the file) c n
+(    ftruncate\(fd,0\);) p n
+(    lseek\(fd,0,SEEK_SET\);) N
+(    snprintf\(buff,) S
+(sizeof) K
+(\(buff\),") p
+(%d) str
+(",0\);) p n
+(    write\(fd,buff,strlen\(buff\)\);) N
+(    printf\(") S
+(Ticket Number is stored to 0.\\n) str
+("\);) p n
+(    releaselock\(fd,offset,size\);) N
+(}) N
+(int) k
+( main\(\){) p n
+(    ) S
+(int) k
+( fd = open\(") p
+(./Question17.txt) str
+(",O_RDWR,0666\);) p n
+(    ) S
+(if) K
+(\(fd<0\) {) p n
+(        perror\(") S
+(open) str
+("\);) p n
+(        exit\(1\);) S
+(// fail to open) c n
+(    }) p n
+(    ) S
+(int) k
+( choice;) p n
+(    writelock\(fd,100,0\); ) N
+(    close\(fd\);) N
+(    ) S
+(return) K
+( 0;) p n
+(}) S
+(Question17a.c) (Page 1/1) (Aug 30, 2024 10:57) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question17a.c) (19/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 20
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(//17. Write a program to simulate online ticket reservation. Implement write loc) N
+(k) N
+(// Write a program to open a file, store a ticket number and exit. Write a separ) N
+(ate program, to) N
+(// open the file, implement write lock, read the ticket number, increment the nu) N
+(mber and print) N
+(// the new ticket number then close the file.) N
+() p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <sys/types.h>) p n
+(#include) K
+( <sys/stat.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <string.h>) p n
+() N
+(void) k
+( releaselock\() p
+(int) k
+( fd,off_t offset, size_t size\){) p n
+(    ) S
+(struct) k
+( flock lock;) p n
+(    lock.l_type=F_UNLCK;) N
+(    lock.l_whence=SEEK_SET;) N
+(    lock.l_start=offset;) N
+(    lock.l_len = size;) N
+(    fcntl\(fd,F_SETLK,&lock\);) N
+() N
+(}) N
+(void) k
+( setlock\() p
+(int) k
+( fd, ) p
+(int) k
+( type,off_t offset,size_t size\){) p n
+(    ) S
+(struct) k
+( flock lock;) p n
+(    lock.l_type= type;) N
+(    lock.l_whence=SEEK_SET;) N
+(    lock.l_start=offset;) N
+(    lock.l_len = size;) N
+(    fcntl\(fd,F_SETLKW,&lock\);) N
+(}) N
+(void) k
+( writelock\() p
+(int) k
+( fd,off_t offset,size_t size\){) p n
+(    setlock\(fd,F_WRLCK,offset,size\);) N
+(    printf\(") S
+(Locking the record file to book a ticket\\n) str
+("\);) p n
+(    ) S
+(char) k
+( buff[250];) p n
+(    ssize_t bytesReaded =  read\(fd,buff,) S
+(sizeof) K
+(\(buff\)-1\);) p n
+(    buff[bytesReaded]=') S
+(\\0) str
+(';) p n
+(    ) S
+(int) k
+( number = atoi\(buff\);) p n
+(    printf\(") S
+(Current no of Ticket Booked : %d \\n) str
+(",number\);) p n
+(    printf\(") S
+(Press enter to Book Your ticket \\n) str
+("\);) p n
+(    getchar\(\);) N
+(    getchar\(\);) N
+(    number++;) N
+(    lseek\(fd,0,SEEK_SET\);) N
+(    snprintf\(buff,) S
+(sizeof) K
+(\(buff\),") p
+(%d) str
+(",number\);) p n
+(    write\(fd,buff,strlen\(buff\)\);) N
+(    printf\(") S
+(Ticket is Booked.\\nYour Ticket no : %d\\n Releasing the lock) str
+(",number\);) p n
+(    releaselock\(fd,offset,size\);) N
+(}) N
+(void) k
+( readlock\() p
+(int) k
+( fd,off_t offset,size_t size\){) p n
+(     setlock\(fd,F_RDLCK,offset,size\);) N
+(     printf\(") S
+(Ticket record are locked in Reading mode ,\\n) str
+("\);) p n
+(     ) S
+(char) k
+( buff[500];) p n
+(     printf\(") S
+(Hit enter to get current no of ticket booked \\n) str
+("\);) p n
+(     getchar\(\);) N
+(     getchar\(\);) N
+(     lseek\(fd,0,SEEK_SET\);) N
+(     ssize_t bytes_read= read\(fd,buff,) S
+(sizeof) K
+(\(buff\)-1\);) p n
+(Question17.c) (Page 1/2) (Aug 30, 2024 10:37) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(     buff[bytes_read]=') p
+(\\0) str
+(';) p n
+(     printf\(") S
+(Ticket booked : \\n\\n%s \\n) str
+(",buff\);) p n
+(     printf\(") S
+(Now Releasing the lock\\n) str
+("\);) p n
+() N
+(    releaselock\(fd,offset,size\);) N
+(}) N
+(int) k
+( main\(\){) p n
+(    ) S
+(int) k
+( fd = open\(") p
+(./Question17.txt) str
+(",O_RDWR,0666\);) p n
+(    ) S
+(if) K
+(\(fd<0\) {) p n
+(        perror\(") S
+(open) str
+("\);) p n
+(        exit\(1\);) S
+(// fail to open) c n
+(    }) p n
+(    ) S
+(int) k
+( choice;) p n
+(    printf\(") S
+(Enter your choice\\n1\). Book Ticket \(According to Question Press 1\)\\n2\). Read Total Ticket Booked\(J) str n
+(ust to lookat total Tickets\)\\n) S
+("\);) p n
+(    scanf\(") S
+(%d) str
+(",&choice\);) p n
+(    ) S
+(switch) K
+( \(choice\)) p n
+(    {) N
+(    ) S
+(case) K
+( 1: writelock\(fd,100,0\); ) p
+(break) K
+(;) p n
+(    ) S
+(case) K
+( 2: readlock\(fd,100,0\); ) p
+(break) K
+(;) p n
+(    ) S
+(default) K
+(: ) p
+(break) K
+(;) p n
+(    }) N
+() N
+(    close\(fd\);) N
+(    ) S
+(return) K
+( 0;) p n
+(}) S
+(Question17.c) (Page 2/2) (Aug 30, 2024 10:37) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question17.c) (20/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 21
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 18. Write a program to perform Record locking.) N
+(// a. Implement write lock) N
+(// b. Implement read lock) N
+(// Create three records in a file. Whenever you access a particular record, firs) N
+(t lock it then modify/access) N
+(// to avoid race condition ) N
+() p n
+() N
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <sys/types.h>) p n
+(#include) K
+( <sys/stat.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <string.h>) p n
+() N
+(#define) K
+( FILE_PATH ") p
+(./Question18.txt) str
+(") p n
+(#define) K
+( RECORD_SIZE 16) p n
+() N
+(int) k
+( max\() p
+(int) k
+( a, ) p
+(int) k
+( b\) {) p n
+(    ) S
+(return) K
+( \(a > b\) ? a : b;) p n
+(}) N
+(void) k
+( increment_and_format\() p
+(char) k
+( *str\) {) p n
+(    ) S
+(int) k
+( number = atoi\(str\);) p n
+(    number++;) N
+(    snprintf\(str, RECORD_SIZE-1, ") S
+(%d) str
+(", number\);) p n
+(    ) S
+(int) k
+( len = strlen\(str\);) p n
+(    ) S
+(int) k
+( zeros_to_add = 15 - len;) p n
+(    ) S
+(if) K
+( \(zeros_to_add > 0\) {) p n
+(        memmove\(str + zeros_to_add, str, len + 1\); ) N
+(        memset\(str, ') S
+(0) str
+(', zeros_to_add\);) p n
+(    }) N
+(}) N
+(void) k
+( releaselock\() p
+(int) k
+( fd,off_t offset, size_t size\){) p n
+(    ) S
+(struct) k
+( flock lock;) p n
+(    lock.l_type=F_UNLCK;) N
+(    lock.l_whence=SEEK_SET;) N
+(    lock.l_start=offset;) N
+(    lock.l_len = size;) N
+(    fcntl\(fd,F_SETLK,&lock\);) N
+() N
+(}) N
+(void) k
+( setlock\() p
+(int) k
+( fd, ) p
+(int) k
+( type,off_t offset,size_t size\){) p n
+(    ) S
+(struct) k
+( flock lock;) p n
+(    lock.l_type= type;) N
+(    lock.l_whence=SEEK_SET;) N
+(    lock.l_start=offset;) N
+(    lock.l_len = size;) N
+(    fcntl\(fd,F_SETLKW,&lock\);) N
+(}) N
+(void) k
+( createNewArr\() p
+(char) k
+( *str,) p
+(char) k
+( *src,) p
+(int) k
+( from , ) p
+(int) k
+( end\){) p n
+(    ) S
+(int) k
+( j=0;) p n
+(     ) S
+(for) K
+(\() p
+(int) k
+( i=from;i<end;i++\){) p n
+(        str[j++]=src[i];) N
+(     }) N
+(}) N
+(void) k
+( writelock\() p
+(int) k
+( fd,) p
+(int) k
+( rNo\){) p n
+(    off_t offset = rNo*\(RECORD_SIZE-1\);) N
+(    size_t size = RECORD_SIZE-1;) N
+(    setlock\(fd,F_WRLCK,offset,size\);) N
+(Question18.c) (Page 1/3) (Aug 30, 2024 15:41) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(    printf\(") p
+(Locking the record file %d\\n) str
+(",rNo\);) p n
+(    ) S
+(char) k
+( buff[rNo*RECORD_SIZE];) p n
+(    ) S
+(char) k
+( newBuff[RECORD_SIZE];) p n
+(    ssize_t bytesReaded =  read\(fd,buff,) S
+(sizeof) K
+(\(buff\)-1\);) p n
+(    ) S
+(if) K
+( \(bytesReaded == 0\) {) p n
+(        printf\(") S
+(Record is empty. Initializing with 0.\\n) str
+("\);) p n
+(        memset\(buff,') S
+(0) str
+(',) p
+(sizeof) K
+(\(buff\)\);) p n
+(    }) S
+(else) K
+({) p n
+(     createNewArr\(newBuff,buff,max\(0,\(\(rNo-1\)*RECORD_SIZE-\(rNo-2\)\)\),\(RECORD_SIZE) N
+(*rNo-rNo\)\);) N
+(    }) N
+(    newBuff[RECORD_SIZE]=') S
+(\\0) str
+(';) p n
+(    ) S
+(int) k
+( number = atoi\(newBuff\);) p n
+(    printf\(") S
+(Current entry in Record no : %d  is  : %d\\n) str
+(",rNo,number\);) p n
+(    printf\(") S
+(Press enter to update the Record no :%d \\n) str
+(",rNo\);) p n
+(    getchar\(\);) N
+(    getchar\(\);) N
+(    number++;) N
+(    increment_and_format\(newBuff\);) N
+(    ) S
+(if) K
+(\(bytesReaded>0\) lseek\(fd,max\(0,\(\(rNo-1\)*RECORD_SIZE-\(rNo-1\)\)\),SEEK_SET\);) p n
+(    ) S
+(else) K
+(   lseek\(fd,0,SEEK_SET\);) p n
+(    write\(fd,newBuff,strlen\(newBuff\)\);) N
+(    printf\(") S
+(Your Record is updated: %d\\nReleasing the lock on Record no : %d\\n) str
+(",number,rNo\);) p n
+(    releaselock\(fd,offset,size\);) N
+(}) N
+(void) k
+( readlock\() p
+(int) k
+( fd,) p
+(int) k
+( rNo\){) p n
+(    off_t offset = \(rNo-1\)*\(RECORD_SIZE-1\);) N
+(    size_t size = RECORD_SIZE-1;) N
+(     setlock\(fd,F_RDLCK,offset,size\);) N
+(     printf\(") S
+(Locking the record file  : %d in reading mode\\n) str
+(",rNo\);) p n
+(     ) S
+(char) k
+( buff[rNo*RECORD_SIZE];) p n
+(    ) S
+(char) k
+( newBuff[RECORD_SIZE];) p n
+(     printf\(") S
+(Hit Enter to get the data of current record \\n) str
+("\);) p n
+(     getchar\(\);) N
+(     getchar\(\);) N
+(     lseek\(fd,offset,SEEK_SET\);) N
+(     ssize_t bytes_read= read\(fd,buff,) S
+(sizeof) K
+(\(buff\)-1\);) p n
+(     ) N
+(     buff[RECORD_SIZE-1]=') S
+(\\0) str
+(';) p n
+(     printf\(") S
+(Data of current Record : %d is : %d\\n) str
+(",rNo,atoi\(buff\)\);) p n
+(     printf\(") S
+(Now Releasing the lock on %d Record\\n) str
+(",rNo\);) p n
+() N
+(    releaselock\(fd,offset,size\);) N
+(}) N
+() N
+(int) k
+( selectRecord\(\){) p n
+(    ) S
+(int) k
+( select;) p n
+(    printf\(") S
+(Enter the record no you want to go with\\n1\\n2\\n3\\n) str
+("\);) p n
+(    scanf\(") S
+(%d) str
+(",&select\);) p n
+(    ) S
+(return) K
+( select;) p n
+(}) N
+(int) k
+( main\(\){) p n
+(    ) S
+(int) k
+( fd = open\(FILE_PATH,O_RDWR,0666\);) p n
+(    ) S
+(if) K
+(\(fd<0\) {) p n
+(        perror\(") S
+(open) str
+("\);) p n
+(        exit\(1\);) S
+(// fail to open) c n
+(    }) p n
+(    ) S
+(int) k
+( choice;) p n
+(    printf\(") S
+(Enter your choice\\n1\). Write Mode\\n2\). Read Mode\\n) str
+("\);) p n
+(    scanf\(") S
+(%d) str
+(",&choice\);) p n
+(    ) S
+(switch) K
+( \(choice\)) p n
+(    {) N
+(Question18.c) (Page 2/3) (Aug 30, 2024 15:41) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question18.c) (21/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (3) 22
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(    ) p
+(case) K
+( 1: writelock\(fd,selectRecord\(\)\); ) p
+(break) K
+(;) p n
+(    ) S
+(case) K
+( 2: readlock\(fd,selectRecord\(\)\); ) p
+(break) K
+(;) p n
+(    ) S
+(default) K
+(: ) p
+(break) K
+(;) p n
+(    }) N
+() N
+(    close\(fd\);) N
+(    ) S
+(return) K
+( 0;) p n
+(}) S
+(Question18.c) (Page 3/3) (Aug 30, 2024 15:41) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question18.c) (22/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 23
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 19. Write a program to find out time taken to execute getpid system call. Use) N
+( time stamp counter.) N
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <unistd.h>  ) p
+(// For getpid\(\)) c n
+() p n
+(// this function will read CPU time stamp counter - this counter is a 64 bit reg) c n
+(ister) N
+(// that increment with each clock cycle - aka timestamp counter \(TSC\). ) N
+(// it count the #cpu cycle since last reset.) N
+(// Location :- hardware -> TSC is located within each CPU core. ) N
+(//                         it is a part of cpu control and status register \(CSRs) N
+(\)) N
+(//                         it is accessed via "rdtsc" \(Read time Stamp counter\) ) N
+(assembly instruction) N
+(//             Accessing : 1\) using "RDTSC" instruction x86 assembly language) N
+(//                           this instruction loads the current value of TSC int) N
+(o EDX:EAX pair of integer in 64 bit mode) N
+(//                         2\) in C instruction is accessed through inline assemb) N
+(ly,) N
+(unsigned) k
+( ) p
+(long) k
+( ) p
+(long) k
+( rdtsc\(\){) p n
+(    ) S
+(// TSC give us 64 bit code but unsigend int can only hold 32 bit. so it will) c n
+( store in 2 variable) N
+(    ) p
+(unsigned) k
+( ) p
+(int) k
+( lo, hi;) p n
+(    ) S
+(// __asm__ it used to insert the assembly language code directlr within the ) c n
+(c program aka- inline assembly) N
+(    ) p
+(// __volatile__ it prevents the compiler ot to optimize away this assembly c) c n
+(ode, ensuring that it is executed exactly as written. ) N
+(    ) p
+(//          and  the value of the variable will not change unexpectedly.) c n
+(    ) p
+(// "rdtsc" - it reads the current value of TSC into two register ) c n
+(    ) p
+(//            1. EAX -  will hold lower 32 bit of TSC) c n
+(    ) p
+(//            2. EDX - hold upper 32 bith) c n
+(    ) p
+(//        =a,=d means the value present in EAX and EDX store in lo an hi) c n
+(    ) p
+(//      now shifting hi value by 32 bit so making it as upper hafl) c n
+(    ) p
+(//       and using | 'or' operator combine both lo and hi) c n
+(    __asm__ __volatile__ \() p n
+(        ") S
+(rdtsc) str
+(") p n
+(        : ") S
+(=a) str
+(" \(lo\), ") p
+(=d) str
+(" \(hi\)) p n
+(    \);) N
+(    ) S
+(return) K
+( \(\() p
+(unsigned) k
+( ) p
+(long) k
+( ) p
+(long) k
+(\)hi << 32\) | lo;) p n
+(}) N
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(unsigned) k
+( ) p
+(long) k
+( ) p
+(long) k
+( start, end;) p n
+() N
+(    ) S
+(// get the time before calling getpid\(\) function) c n
+(    start = rdtsc\(\);) p n
+() N
+(    ) S
+(// Execute the getpid\(\) system call) c n
+(    getpid\(\);) p n
+() N
+(    ) S
+(// Get time time after calling getpid\(\) function) c n
+(    end = rdtsc\(\);) p n
+() N
+(    ) S
+(// now calculate the diffence between start and end, and this is the answer) c n
+(    printf\(") p
+(getpid\(\) takes : %llu cycles\\n) str
+(", end - start\);) p n
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question19.c) (Page 1/1) (Aug 20, 2024 12:21) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question19.c) (23/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 24
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(//20. Find out the priority of your running program. ) N
+(//    Modify the priority with nice command.) N
+() p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <unistd.h>) p n
+(int) k
+( main\(\){) p n
+() N
+(    ) S
+(while) K
+(\(1\){) p n
+(        ) S
+(// now this will run infinatly) c n
+() p n
+(        sleep\(1\);) N
+(    }) N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(// just run this program either back or foreground) c n
+() p n
+(// now to check the priority of our running program) c n
+(// $ps -l -p <pid>) N
+(// entter this and it will return us below data ) N
+(//  |  abhay@abhay-pc:~/Desktop/handsOnList$ ps -l -p 12689) N
+(//  | F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD) N
+(//  | 0 S  1000   12689    9069  0  80   0 -   638 hrtime pts/2    00:00:00 a.ou) N
+(t) N
+() p n
+(// PRI - PRiority) c n
+(// NI : nice value  \(default val is 0\)) N
+() p n
+(// now stop program and change the nice value) c n
+(// nice value change on starting ) N
+(// use 'nice' command) N
+() p n
+(// $ nice -n 10 ./prog_name) c n
+() p n
+(// if you want to change the nice value while running ) c n
+(// use 'renice' command) N
+() p n
+(// renice -n 25 -p <pid>) c n
+(Question20.c) (Page 1/1) (Aug 20, 2024 12:38) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question20.c) (24/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 25
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 21. Write a program, call fork and print the parent and child process id.) N
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <unistd.h>  ) p n
+(#include) K
+( <sys/wait.h>) p n
+(int) k
+( main\(\) {) p n
+(    ) S
+(// Create a new process) c n
+(    ) p
+(int) k
+( pid = fork\(\);) p n
+() N
+(    ) S
+(if) K
+( \(pid < 0\){) p n
+(        printf\(") S
+(Fork is failed to create\\n) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    } ) S
+(else) K
+( ) p
+(if) K
+( \(pid == 0\) {) p n
+(        ) S
+(// Child process created) c n
+(        printf\(") p
+(Child process. Process ID: %d\\n) str
+(", getpid\(\)\);) p n
+(        printf\(") S
+(Parent Process ID: %d\\n) str
+(", getppid\(\)\);) p n
+(    } ) S
+(else) K
+( {) p n
+(        ) S
+(// Parent process) c n
+(        printf\(") p
+(This is the parent process. Process ID: %d\\n) str
+(", getpid\(\)\);) p n
+(        printf\(") S
+(Child Process ID: %d\\n) str
+(", pid\);) p n
+(        wait\() S
+(NULL) K
+(\);) p n
+(    }) N
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question21.c) (Page 1/1) (Aug 30, 2024 20:52) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question21.c) (25/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 26
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 22. Write a program, open a file, call fork, ) N
+(// and then write to the file by both the child as well as the) N
+(// parent processes. Check output of the file.) N
+() p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <unistd.h>  ) p
+(// For fork\(\) and getpid\(\)) c n
+(#include) K
+( <fcntl.h>   ) p
+(// For open\(\)) c n
+(#include) K
+( <sys/types.h> ) p
+(// For pid_t) c n
+(#include) K
+( <sys/wait.h>  ) p
+(// For wait\(\)) c n
+(#include) K
+( <string.h>  ) p
+(// For strlen\(\)) c n
+(int) k
+( main\(\) {) p n
+(    ) S
+(int) k
+( fd;) p n
+(    ) S
+(int) k
+( pid;) p n
+(    ) S
+(char) k
+( fileName[250];) p n
+(    ) S
+(char) k
+( dataToWrite[1000];) p n
+(    printf\(") S
+(Enter the filename \\n) str
+("\);) p n
+(    fgets\(fileName,) S
+(sizeof) K
+(\(fileName\),stdin\);) p n
+(    ) S
+(// Open a file, if it is not available then create new file) c n
+(    fd = open\(fileName, O_WRONLY | O_CREAT | O_TRUNC, 0777\);) p n
+(    ) S
+(if) K
+( \(fd < 0\) {) p n
+(        perror\(") S
+(there is an error while opening file) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    }) N
+() N
+(    ) S
+(// Create a child process) c n
+(    pid = fork\(\);) p n
+() N
+(    ) S
+(if) K
+( \(pid < 0\) {) p n
+(        printf\(") S
+(Fork not created) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    } ) S
+(else) K
+( ) p
+(if) K
+( \(pid == 0\) {) p n
+(        ) S
+(// Child process) c n
+(        printf\(") p
+(enter a message for child process \\n) str
+("\);) p n
+(        fgets\(dataToWrite,) S
+(sizeof) K
+(\(dataToWrite\),stdin\);) p n
+(        write\(fd, dataToWrite, strlen\(dataToWrite\)\);) N
+(    } ) S
+(else) K
+( {) p n
+(         ) S
+(// Wait for the child process to finish) c n
+(           wait\() p
+(NULL) K
+(\);) p n
+(        ) S
+(// Parent process) c n
+(        printf\(") p
+(enter a message for Parent Process \\n) str
+("\);) p n
+(        fgets\(dataToWrite,) S
+(sizeof) K
+(\(dataToWrite\),stdin\);) p n
+(        write\(fd, dataToWrite, strlen\(dataToWrite\)\);) N
+() N
+(       ) N
+(     ) N
+(    }) N
+() N
+(    ) S
+(// Close the file) c n
+(    close\(fd\);) p n
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question22.c) (Page 1/1) (Aug 20, 2024 13:41) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question22.c) (26/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 27
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 23. Write a program to create a Zombie state of the running program.) N
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <sys/wait.h>  ) p
+(// For wait\(\)) c n
+() p n
+(int) k
+( main\(\) {) p n
+(    pid_t pid = fork\(\);  ) S
+(// Create a new process) c n
+() p n
+(    ) S
+(if) K
+( \(pid < 0\) {) p n
+(        ) S
+(// Fork failed) c n
+(        perror\(") p
+(There is an error in fork - process is not created) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    } ) S
+(else) K
+( ) p
+(if) K
+( \(pid == 0\) {) p n
+(        ) S
+(// Child process) c n
+(        printf\(") p
+(Child process  with process ID: %d is completed now exiting.\\n) str
+(", getpid\(\)\);) p n
+(        exit\(0\);  ) S
+(// Exit immediately, becoming a zombie) c n
+(    } ) p
+(else) K
+( {) p n
+(        ) S
+(// Parent process) c n
+(        printf\(") p
+(Parent process with Process ID: %d is running will now sleep.\\n) str
+(", getpid\(\)\);) p n
+(        ) S
+(// Sleep for 30 seconds to check the zombie state in terminal ) c n
+(        ) p
+(// run this process FG or BG use below command to check zombie process) c n
+(        ) p
+(// $ps aux | grep Z) c n
+(        ) p
+(// here parent is sleeping for 30 sec without calling wait\(\)) c n
+(        ) p
+(// so child become zombie because it is exited but still not yet acknowl) c n
+(edged by parent) N
+(        sleep\(30\);) p n
+() N
+(       ) N
+(        printf\(") S
+(Parent process with process ID: %d is exiting.\\n) str
+(", getpid\(\)\);) p n
+(    }) N
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+() N
+(// zombie process is a process that is completed but still has an entry in proce) c n
+(ss table.) N
+(// this happen due to parent process did not use 'wait\(\)' or 'waitpid\(\)' functio) N
+(n to check exit status of child) N
+(// ) S
+(Question23.c) (Page 1/1) (Aug 20, 2024 19:17) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question23.c) (27/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 28
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 24. Write a program to create an orphan process.) N
+() p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <unistd.h>) p n
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(int) k
+( pid = fork\(\);  ) p
+(// creating a child process using fork\(\)) c n
+() p n
+(    ) S
+(if) K
+( \(pid < 0\) {) p n
+(        printf\(") S
+(There is an error while creating process using fork) str
+("\);) p n
+(        ) S
+(return) K
+( 1;) p n
+(    } ) S
+(else) K
+( ) p
+(if) K
+( \(pid == 0\) {) p n
+(        ) S
+(// Child) c n
+(        ) p
+(// here we set our child sleep for few secs ) c n
+(        ) p
+(// then let parent process complete its executation) c n
+(        sleep\(10\);  ) p n
+(        printf\(") S
+(Child process with process ID: %d  is now became an orphan.\\nAs parent process is exited.\\n) str
+(") p n
+(, getpid\(\)\);) N
+(        ) S
+(// after parent process exited. the init process takeover the orphan and) c n
+( let child compele its execution) N
+(        ) p
+(// here in linux-Ubuntu 24.04 LTS orphan is handled by systemd ) c n
+(        ) p
+(// please check the to check systemd process) c n
+(        ) p
+(// pidof systemd) c n
+(        printf\(") p
+(Parent process ID after child become orphan : %d\\n) str
+(", getppid\(\)\);) p n
+(    } ) S
+(else) K
+( {) p n
+(        ) S
+(// Parent) c n
+(        ) p
+(// set parent process to sleep so our child can enter and get sleep) c n
+(        ) p
+(// as soon child process set to sleep the parent start its execution jsu) c n
+(t after 2 sec) N
+(        ) p
+(// and prints it process id and exit from execution leaving child proces) c n
+(s in sleeping state) N
+(        sleep\(2\);) p n
+(        printf\(") S
+(Parent process  with process ID: %d is now exiting.\\n) str
+(", getpid\(\)\);) p n
+(        exit\(0\);) N
+(    }) N
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question24.c) (Page 1/1) (Aug 20, 2024 22:38) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question24.c) (28/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 29
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 25. Write a program to create three child processes. The parent should wait f) N
+(or a particular child \(use) N
+(// waitpid system call\)) N
+() p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <sys/wait.h>  ) p
+(// For waitpid\(\)) c n
+() p n
+(int) k
+( main\(\) {) p n
+(    ) S
+(int) k
+( child1, child2, child3;) p n
+() N
+(    ) S
+(// Create three child processes) c n
+(    ) p
+(// child1 = fork\(\);) c n
+(    ) p
+(// child2 = fork\(\);) c n
+(    ) p
+(// child3 = fork\(\);) c n
+(    ) p
+(if) K
+( \(\(child1 = fork\(\)\) == 0\) {) p n
+(        printf\(") S
+(Child 1 is running : %d\\n) str
+(", getpid\(\)\);) p n
+(        exit\(0\);) N
+(    }) N
+(    ) N
+(   ) S
+(if) K
+( \(\(child2 = fork\(\)\) == 0\) {) p n
+(        printf\(") S
+(Child 2 is running : %d\\n) str
+(", getpid\(\)\);) p n
+(        exit\(0\);) N
+(    }) N
+(    ) N
+(    ) S
+(if) K
+( \(\(child3 = fork\(\)\) == 0\) {) p n
+(        printf\(") S
+(Child 3  is running : %d\\n) str
+(", getpid\(\)\);) p n
+(        exit\(0\);) N
+(    }) N
+() N
+(    ) S
+(//  waitpid will wait for particular process) c n
+(    ) p
+(//  and setting 0 means it will block the process untill its) c n
+(    ) p
+(//  targeted child is executed successfully and changes its state ) c n
+(    ) p
+(//  &status varibale hold the return status of child) c n
+(    waitpid\(child2, ) p
+(NULL) K
+(, 0\);) p n
+(    printf\(") S
+(Child %d exited\\n) str
+(", child2\);) p n
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question25.c) (Page 1/1) (Aug 21, 2024 0:46) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question25.c) (29/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 30
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 26. Write a program to execute an executable program.) N
+(// a. use some executable program) N
+(// b. pass some input to an executable program. \(for example execute an executab) N
+(le of $./a.out name\)) N
+(#include) K
+( <stdio.h>) p n
+() N
+(int) k
+( main\() p
+(int) k
+( argc, ) p
+(char) k
+( *argv[]\) {) p n
+(    ) S
+(if) K
+( \(argc > 1\) {) p n
+(        printf\(") S
+(Argument passed by you : %s!\\n) str
+(", argv[1]\);) p n
+(    } ) S
+(else) K
+( {) p n
+(        printf\(") S
+(No argument is passed!\\n) str
+("\);) p n
+(    }) N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question26a.c) (Page 1/1) (Aug 31, 2024 11:30) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question26a.c) (30/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 31
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 26. Write a program to execute an executable program.) N
+(// a. use some executable program) N
+(// b. pass some input to an executable program. \(for example execute an executab) N
+(le of $./a.out name\)) N
+() p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <sys/wait.h>) p n
+(int) k
+( main\(\) {) p n
+( ) N
+(  ) N
+(    ) S
+(int) k
+( pid1, pid2;) p n
+(    ) S
+(int) k
+( status;) p n
+() N
+(    ) S
+(// i need to create 2 different child) c n
+(    ) p
+(// to run execl because it will replace the current process image with new i) c n
+(mage ) N
+(    ) p
+(// so we will just create 2 new child processes to do this work) c n
+(    ) p
+(if) K
+( \(\(pid1 = fork\(\)\)== 0\) {) p n
+(        ) S
+(// Child process 1) c n
+(        ) p
+(//in execl\(\) 1st argument is path to file) c n
+(        ) p
+(//           2nd argument is name of file) c n
+(        ) p
+(//           3rd argument is argument which is needed to be passed) c n
+(        printf\(") p
+(Running program without arguments\\n) str
+("\);) p n
+(        execl\(") S
+(./Question26a.out) str
+(", ") p
+(./Question26a.out) str
+(", ) p
+(NULL) K
+(\);) p n
+(    }) N
+(   ) N
+(    ) S
+(if) K
+( \(\(pid2 = fork\(\)\) == 0\) {) p n
+(        ) S
+(// Child process 2) c n
+(        sleep\(1\);) p n
+(    printf\(") S
+(Running program with arguments\\n) str
+("\);) p n
+(    execl\(") S
+(./Question26a.out) str
+(", ") p
+(./Question26a.out) str
+(", ") p
+(Abhay) str
+(", ) p
+(NULL) K
+(\);) p n
+(    }) N
+(    waitpid\(pid1, &status, 0\);) N
+(    waitpid\(pid2, &status, 0\);) N
+(    printf\(") S
+(Both child processes have finished.\\nAnd executed both program with or without argument.\\n) str
+("\);) p n
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question26.c) (Page 1/1) (Aug 21, 2024 0:43) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question26.c) (31/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 32
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya ) N
+(//27. Write a program to execute ls -Rl by the following system calls) N
+(// a. execl) N
+(// b. execlp) N
+(// c. execle) N
+(// d. execv) N
+(// e. execvp) N
+() p n
+() N
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <sys/wait.h>) p n
+() N
+(int) k
+( main\(\) {) p n
+(    pid_t pid;) N
+() N
+(    ) S
+(// 1. Using execl) c n
+(    ) p
+(// Syntax: int execl\(path, filename ..., NULL\)) c n
+(    ) p
+(//in execl\(\) 1st argument is path to file) c n
+(    ) p
+(//           2nd argument is name of file) c n
+(    ) p
+(//           3rd argument is argument which is needed to be passed) c n
+(    ) p
+(// in this we need to provide full executable path) c n
+(    ) p
+(// it does not use the PATh enviromant variable to locate the executable) c n
+(    ) p
+(// it replace the current process image with a new process image. the curren) c n
+(t ) N
+(    ) p
+(// process will completely replaced. ) c n
+(    printf\(") p
+(\\n\\n--------------------------------------------------------\\n\\n) str
+("\);) p n
+(    printf\(") S
+(Executing excel\(\) Function \\n) str
+("\);) p n
+(    printf\(") S
+(\\n\\n--------------------------------------------------------\\n\\n) str
+("\);) p n
+(    ) S
+(if) K
+( \(fork\(\) == 0\)     execl\(") p
+(/bin/ls) str
+(", ") p
+(ls) str
+(", ") p
+(-Rl) str
+(", ) p
+(NULL) K
+(\);) p n
+(    ) S
+(else) K
+(     wait\() p
+(NULL) K
+(\); ) p
+(// Wait for the child process to finish) c n
+(    ) p n
+() N
+(    ) S
+(// 2. Using execlp) c n
+(    ) p
+(// int execlp\(file, *arg0, ...,NULL\)) c n
+(    ) p
+(// it  searches file in the directory listed in the PATH envrionment variabl) c n
+(e) N
+(    ) p
+(// argument list must be terminated by a 'NULL' ) c n
+(    ) p
+(// is also replaces process image) c n
+(    printf\(") p
+(\\n\\n--------------------------------------------------------\\n\\n) str
+("\);) p n
+(    printf\(") S
+(Executing execlp\(\) Function \\n) str
+("\);) p n
+(    printf\(") S
+(\\n\\n--------------------------------------------------------\\n\\n) str
+("\);) p n
+(    ) S
+(if) K
+( \(fork\(\) == 0\) execlp\(") p
+(ls) str
+(", ") p
+(ls) str
+(", ") p
+(-Rl) str
+(", ) p
+(NULL) K
+(\);) p n
+(    ) S
+(else) K
+( wait\() p
+(NULL) K
+(\); ) p
+(// Wait for the child process to finish) c n
+(    ) p n
+() N
+(    ) S
+(// 3. Using execle) c n
+(    ) p
+(// it is also same as execl but it allows specifying a custom) c n
+(    ) p
+(// environment list for the new process. environment list is ) c n
+(    ) p
+(// passed as an array of strings, ending with a 'NULL' pointer) c n
+(    ) p
+(// envp - array of environment variavles for the new process) c n
+(    printf\(") p
+(\\n\\n--------------------------------------------------------\\n\\n) str
+("\);) p n
+(       printf\(") S
+(Executing execle\(\) Function \\n) str
+("\);) p n
+(       printf\(") S
+(\\n\\n--------------------------------------------------------\\n\\n) str
+("\);) p n
+(    ) S
+(if) K
+( \(fork\(\) == 0\) {) p n
+(        ) S
+(char) k
+( *envp[] = {) p
+(NULL) K
+(}; ) p
+(// Passing an empty environment) c n
+(        execle\(") p
+(/bin/ls) str
+(", ") p
+(ls) str
+(", ") p
+(-Rl) str
+(", ) p
+(NULL) K
+(, envp\);) p n
+(    } ) S
+(else) K
+( wait\() p
+(NULL) K
+(\); ) p
+(// Wait for the child process to finish) c n
+() p n
+(    ) S
+(// 4. Using execv) c n
+(    ) p
+(// execv execute a program specified by path with arguments passed as an arr) c n
+(Question27.c) (Page 1/2) (Aug 31, 2024 11:31) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(ay of strings) c n
+(    ) p
+(// the array must be terminated by a NULL pointer) c n
+(    ) p
+(// path to executable file) c n
+(    ) p
+(// argv - an array of string representing the command line argumets for exec) c n
+(tubale) N
+(    ) p
+(// first element should be the name of the program itself) c n
+(    printf\(") p
+(\\n\\n--------------------------------------------------------\\n\\n) str
+("\);) p n
+(   printf\(") S
+(Executing execv\(\) Function \\n) str
+("\);    ) p n
+(   printf\(") S
+(\\n\\n--------------------------------------------------------\\n\\n) str
+("\);) p n
+(    ) S
+(if) K
+( \(fork\(\) == 0\) {) p n
+(        ) S
+(char) k
+( *args[] = {") p
+(ls) str
+(", ") p
+(-Rl) str
+(", ) p
+(NULL) K
+(};) p n
+(        execv\(") S
+(/bin/ls) str
+(", args\);) p n
+(    } ) S
+(else) K
+(     wait\() p
+(NULL) K
+(\); ) p
+(// Wait for the child process to finish) c n
+(    ) p n
+() N
+(    ) S
+(// 5. Using execvp) c n
+(    ) p
+(// it is similer to execv but it searches for the executbale file in the dir) c n
+(ectories listed) N
+(    ) p
+(// in the 'PATH' envrionment variable) c n
+(    ) p
+(// the argument are passed as an array of strings) c n
+(    ) p
+(// the name of file to execute it searched in the directories  specified in ) c n
+(path) N
+(    ) p
+(// args should be in array of string) c n
+(    printf\(") p
+(\\n\\n--------------------------------------------------------\\n\\n) str
+("\);) p n
+(   printf\(") S
+(Executing execvp\(\) Function \\n) str
+("\);) p n
+(   printf\(") S
+(\\n\\n--------------------------------------------------------\\n\\n) str
+("\);) p n
+(    ) S
+(if) K
+( \(fork\(\) == 0\) {) p n
+(        ) S
+(char) k
+( *args[] = {") p
+(ls) str
+(", ") p
+(-Rl) str
+(", ) p
+(NULL) K
+(};) p n
+(        execvp\(") S
+(ls) str
+(", args\);) p n
+(    } ) S
+(else) K
+( {) p n
+(        wait\() S
+(NULL) K
+(\); ) p
+(// Wait for the child process to finish) c n
+(    }) p n
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question27.c) (Page 2/2) (Aug 31, 2024 11:31) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question27.c) (32/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 33
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(//28. Write a program to get maximum and minimum real time priority.) N
+() p n
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <sched.h>) p n
+(#include) K
+( <unistd.h>) p n
+(void) k
+( printPri\() p
+(char) k
+( *string,) p
+(int) k
+( SCHED_POLICY\){) p n
+(printf\(") S
+(Max realtime priority of %s Scheduler is : %d\\n) str
+(",string, sched_get_priority_max\(SCHED_) p n
+(POLICY\)\);) N
+(printf\(") S
+(Min realtime priority of %s Scheduler is : %d\\n) str
+(",string, sched_get_priority_min\(SCHED_P) p n
+(OLICY\)\);) N
+(}) N
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(int) k
+( pid;) p n
+(    ) S
+(int) k
+( policy;) p n
+(    ) S
+(// getting the process ID of current process to retrive the SCHEDULING polic) c n
+(y) N
+(    pid = getpid\(\);  ) p
+(// Get current process ID) c n
+(    ) p
+(// using below function by passing PID of current function we can get schedu) c n
+(ling policy) N
+(    policy = sched_getscheduler\(pid\);) p n
+(    ) S
+(// why iam doing this because OS uses multiple type of policies like below  ) c n
+(    ) p
+(// SCHED_FIFO) c n
+(    ) p
+(// SCHED_RR) c n
+(    ) p
+(// SCHED_OTHER) c n
+(    ) p
+(// so to get correct priory we need current scheduling algo) c n
+(    printPri\(") p
+(SCHED_FIFO) str
+(",SCHED_FIFO\);) p n
+(    printPri\(") S
+(SCHED_RR) str
+(",SCHED_RR\);) p n
+(    printPri\(") S
+(SCHED_OTHER) str
+(",SCHED_OTHER\);) p n
+(   ) N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+() N
+() N
+(Question28.c) (Page 1/1) (Aug 31, 2024 11:32) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question28.c) (33/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1) 34
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 29. Write a program to get scheduling policy and modify the scheduling policy) N
+( \(SCHED_FIFO,SCHED_RR\).) N
+() p n
+() N
+() N
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <sched.h>) p n
+(#include) K
+( <errno.h>) p n
+() N
+(void) k
+( printCurrentPolicy\() p
+(int) k
+( policy\) {) p n
+(    ) S
+(switch) K
+( \(policy\) {) p n
+(        ) S
+(case) K
+( SCHED_OTHER:) p n
+(            printf\(") S
+(Current : SCHED_OTHER\\n) str
+("\);) p n
+(            ) S
+(break) K
+(;) p n
+(        ) S
+(case) K
+( SCHED_FIFO:) p n
+(            printf\(") S
+(Current : SCHED_FIFO \\n) str
+("\);) p n
+(            ) S
+(break) K
+(;) p n
+(        ) S
+(case) K
+( SCHED_RR:) p n
+(            printf\(") S
+(Current : SCHED_RR\\n) str
+("\);) p n
+(            ) S
+(break) K
+(;) p n
+(        ) S
+(default) K
+(:) p n
+(            printf\(") S
+(Unknown scheduling policy\\n) str
+("\);) p n
+(            ) S
+(break) K
+(;) p n
+(    }) N
+(}) N
+() N
+(int) k
+( main\(\) {) p n
+(    ) S
+(int) k
+( pid = getpid\(\);  ) p n
+(    ) S
+(struct) k
+( sched_param param;) p n
+(    printCurrentPolicy\(sched_getscheduler\(pid\)\);) N
+(    param.sched_priority = 10;) N
+(    sched_setscheduler\(pid, SCHED_FIFO, &param\);) N
+(    printf\(") S
+(Scheduling policy changed to SCHED_FIFO with priority %d\\n) str
+(", param.sched_priority\);) p n
+(    printCurrentPolicy\(sched_getscheduler\(pid\)\);) N
+(    param.sched_priority = 15; ) N
+(    sched_setscheduler\(pid, SCHED_RR, &param\);) N
+(    printf\(") S
+(Scheduling policy changed to SCHED_RR with priority %d\\n) str
+(", param.sched_priority\);) p n
+(    printCurrentPolicy\(sched_getscheduler\(pid\)\);) N
+() N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question29.c) (Page 1/1) (Aug 31, 2024 11:32) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question29.c) (34/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+%%Page: (1-2) 35
+%%BeginPageSetup
+/pagesave save def
+sh 0 translate 90 rotate
+%%EndPageSetup
+iso1dict begin
+gsave
+llx lly 12 add translate
+/v 0 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(// Roll no :- MT2024003) c n
+(// Name :- Abhay Bhadouriya) N
+(// 30. Write a program to run a script at a specific time using a Daemon process) N
+(.) N
+() p n
+() N
+(#include) K
+( <stdio.h>) p n
+(#include) K
+( <stdlib.h>) p n
+(#include) K
+( <unistd.h>) p n
+(#include) K
+( <fcntl.h>) p n
+(#include) K
+( <sys/types.h>) p n
+(#include) K
+( <sys/stat.h>) p n
+(#include) K
+( <time.h>) p n
+() N
+(// script name which we are going to run ) c n
+(#define) K
+( SCRIPT_PATH ") p
+(./alert.sh) str
+(") p n
+(// time in hour) c n
+(#define) K
+( TARGET_HOUR 23) p n
+(// time in minute) c n
+(#define) K
+( TARGET_MINUTE 06) p n
+() N
+(void) k
+( createDaemonProcess\(\) {) p n
+(    pid_t pid;) N
+() N
+(    pid = fork\(\);) N
+() N
+(    ) S
+(if) K
+( \(pid < 0\) {) p n
+(        ) S
+(// child not created) c n
+(        exit\(1\);) p n
+(    }) N
+() N
+(    ) S
+(if) K
+( \(pid > 0\) {) p n
+(        ) S
+(// terminate parent) c n
+(        exit\(0\);) p n
+(    }) N
+() N
+(    ) S
+(// Set the child process as the session leader) c n
+(    ) p
+(if) K
+( \(setsid\(\) < 0\) {) p n
+(        ) S
+(// exit if session is not created on child) c n
+(        exit\(1\);) p n
+(    }) N
+() N
+(    pid = fork\(\);) N
+(    ) S
+(if) K
+( \(pid < 0\) {) p n
+(        exit\(EXIT_FAILURE\);) N
+(    }) N
+() N
+(    ) S
+(if) K
+( \(pid > 0\) {) p n
+(        exit\(EXIT_SUCCESS\);) N
+(    }) N
+() N
+(    umask\(0\);) N
+(    chdir\(") S
+(/) str
+("\);) p n
+() N
+(    ) S
+(// Close standard input, output, and error file descriptors) c n
+(    close\(STDIN_FILENO\);  ) p n
+(    close\(STDOUT_FILENO\); ) N
+(    close\(STDERR_FILENO\); ) N
+(}) N
+() N
+() N
+() N
+(Question30.c) (Page 1/2) (Aug 31, 2024 11:33) title
+border
+/v 1 store
+/x0 x v get 3.362408 add sx cw mul add store
+/y0 y v get bfs th add sub store
+x0 y0 moveto
+(int) k
+( main\(\) {) p n
+(   ) N
+(    ) S
+(// run for infinite for checking if time is there ) c n
+(    ) p
+(int) k
+( hour;) p n
+(    ) S
+(int) k
+( min;) p n
+(    printf\(") S
+(Enter Hour in 24hour format \\n) str
+("\);) p n
+(    scanf\(") S
+(%d) str
+(",&hour\);) p n
+(    printf\(") S
+(Enter minute \\n) str
+("\);) p n
+(    scanf\(") S
+(%d) str
+(",&min\);) p n
+(     createDaemonProcess\(\);) N
+(    ) S
+(while) K
+( \(1\) {) p n
+(        ) S
+(// getting time in UTC) c n
+(        time_t now = time\() p
+(NULL) K
+(\);) p n
+(        ) S
+(// converting time to local machine) c n
+(        ) p
+(struct) k
+( tm *tm_info = localtime\(&now\);) p n
+(        ) S
+(if) K
+( \(tm_info->tm_hour == hour && tm_info->tm_min == min\) {) p n
+(                ) S
+(// when time is same then just trigger the execl) c n
+(                    system\(") p
+(/home/abhay/Desktop/handsOnList/alert.sh) str
+("\); ) p n
+(                    ) S
+(return) K
+( 0;) p n
+(        }) N
+(        sleep\(5\); ) N
+(   }) N
+(    ) S
+(return) K
+( 0;) p n
+(}) N
+(Question30.c) (Page 2/2) (Aug 31, 2024 11:33) title
+border
+grestore
+(Printed by Abhay) rhead
+(Question30.c) (35/35) (Tuesday September 03, 2024) footer
+end % of iso1dict
+pagesave restore
+showpage
+
+%%Trailer
+end
+%%EOF

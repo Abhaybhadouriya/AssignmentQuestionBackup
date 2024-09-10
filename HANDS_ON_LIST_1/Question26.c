@@ -32,6 +32,7 @@ int main() {
     printf("Running program with arguments\n");
     execl("./Question26a.out", "./Question26a.out", "Abhay", NULL);
     }
+    
     waitpid(pid1, &status, 0);
     waitpid(pid2, &status, 0);
     printf("Both child processes have finished.\nAnd executed both program with or without argument.\n");

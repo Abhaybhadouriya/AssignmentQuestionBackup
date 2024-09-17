@@ -3,6 +3,11 @@
         "pthread.h": "c",
         "stdio.h": "c",
         "fcntl.h": "c",
-        "semaphore.h": "c"
+        "semaphore.h": "c",
+        "resource.h": "c",
+        "string.h": "c",
+        "ipc.h": "c",
+        "stdlib.h": "c",
+        "signal.h": "c"
     }
 }

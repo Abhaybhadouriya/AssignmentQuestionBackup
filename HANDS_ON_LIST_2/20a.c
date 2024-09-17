@@ -4,7 +4,7 @@ File Name : 20a.c
 Author : Abhay bhadouriya
 Roll No : MT2024003
 Description : 20. Write two programs so that both can communicate by FIFO -Use one way communication.
-Data : --/--/----
+Data : 15/09/2024
 ============================================================================================
 */
 #include <stdio.h>

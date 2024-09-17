@@ -8,7 +8,7 @@ Description :
 14. Write a simple program to create a pipe, write to the pipe, read from pipe and display on
 the monitor.
 
-Data : --/--/----
+Data : -14/09/2024
 ============================================================================================
 */
 #include <stdio.h>
@@ -19,12 +19,7 @@ int main() {
     int pipefd[2];
     char buffer[100];
     const char *message = "Hello from pipe!";
-
-    if (pipe(pipefd) == -1) {
-        perror("pipe");
-        return 1;
-    }
-
+    pipe(pipefd);
     // Write to the pipe
     write(pipefd[1], message, strlen(message) + 1);
     close(pipefd[1]); // Close the write end after writing

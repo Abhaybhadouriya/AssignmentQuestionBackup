@@ -8,7 +8,7 @@ Description :
 18. Write a program to find out total number of directories on the pwd.
 execute ls -l | grep ^d | wc ? Use only dup2.
 
-Data : --/--/----
+Data : 14/09/2024
 ============================================================================================
 */
 
@@ -23,16 +23,11 @@ int main() {
     pid_t pid;
 
     // Create pipes
-    if (pipe(pipefd1) == -1 || pipe(pipefd2) == -1) {
-        perror("pipe");
-        return 1;
-    }
-
+    pipe(pipefd1);
+    pipe(pipefd2);
+    
     // Fork for 'ls -l'
-    if ((pid = fork()) == -1) {
-        perror("fork");
-        return 1;
-    }
+    pid = fork();
 
     if (pid == 0) { // Child process for 'ls -l'
         dup2(pipefd1[1], STDOUT_FILENO); // Redirect stdout to pipefd1
@@ -45,10 +40,7 @@ int main() {
     }
 
     // Fork for 'grep ^d'
-    if ((pid = fork()) == -1) {
-        perror("fork");
-        return 1;
-    }
+    pid = fork();
 
     if (pid == 0) { // Child process for 'grep ^d'
         dup2(pipefd1[0], STDIN_FILENO); // Redirect stdin to pipefd1
@@ -61,10 +53,7 @@ int main() {
     }
 
     // Fork for 'wc -l'
-    if ((pid = fork()) == -1) {
-        perror("fork");
-        return 1;
-    }
+    pid = fork();
 
     if (pid == 0) { // Child process for 'wc -l'
         dup2(pipefd2[0], STDIN_FILENO); // Redirect stdin to pipefd2

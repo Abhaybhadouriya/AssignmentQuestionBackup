@@ -5,7 +5,7 @@ Author : Abhay bhadouriya
 Roll No : MT2024003
 Description : Write a program to print the maximum number of files can be opened within a process and
 size of a pipe (circular buffer)
-Data : --/--/----
+Data : 16/09/2024
 ============================================================================================
 */
 #include <stdio.h>
@@ -19,12 +19,10 @@ int main() {
     struct rlimit rl;
     getrlimit(RLIMIT_NOFILE, &rl);
     printf("Max open files: %ld\n", rl.rlim_cur);
-
     // 2. Create a pipe and estimate the buffer size
     int pipefd[2];
     pipe(pipefd);
     printf("Estimated pipe buffer size: 64 KB\n");
-
     close(pipefd[0]);
     close(pipefd[1]);
 

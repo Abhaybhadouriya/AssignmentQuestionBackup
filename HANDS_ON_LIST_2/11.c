@@ -8,7 +8,7 @@ Description :
 11. Write a program to ignore a SIGINT signal then reset the default action of the SIGINT signal -
 use sigaction system call.
 
-Data : --/--/----
+Data : 13/09/2024
 ============================================================================================
 */
 #include <stdio.h>

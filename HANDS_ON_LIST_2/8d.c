@@ -14,10 +14,9 @@ e. SIGALRM (use setitimer system call)
 f. SIGVTALRM (use setitimer system call)
 g. SIGPROF (use setitimer system call)
 
-Data : --/--/----
+Data : 12/09/2024
 ============================================================================================
 */
-// sigalrm_alarm.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>

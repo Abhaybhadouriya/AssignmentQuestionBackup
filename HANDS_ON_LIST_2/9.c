@@ -5,7 +5,7 @@ Author : Abhay bhadouriya
 Roll No : MT2024003
 Description :  Write a program to ignore a SIGINT signal then reset the default action of the SIGINT
 signal - Use signal system call
-Data : --/--/----
+Data : 13/09/2024
 ============================================================================================
 */
 #include <stdio.h>

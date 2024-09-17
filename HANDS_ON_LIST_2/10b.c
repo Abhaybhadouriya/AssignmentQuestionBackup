@@ -7,10 +7,9 @@ Description : Write a separate program using sigaction system call to catch the 
 a. SIGSEGV
 b. SIGINT
 c. SIGFPE
-Data : --/--/----
+Data : 13/09/2024
 ============================================================================================
 */
-// sigint_handler.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -27,11 +26,7 @@ int main() {
     sigemptyset(&sa.sa_mask);
     sa.sa_flags = 0;
 
-    if (sigaction(SIGINT, &sa, NULL) == -1) {
-        perror("sigaction SIGINT");
-        exit(EXIT_FAILURE);
-    }
-
+    sigaction(SIGINT, &sa, NULL);
     printf("Waiting for SIGINT. Press Ctrl+C to send SIGINT...\n");
 
     while (1) {

@@ -9,7 +9,7 @@ Description :
 will send the signal (using kill system call). Find out whether the first program is able to catch
 the signal or not.
 
-Data : --/--/----
+Data : 14/09/2024
 ============================================================================================
 */
 #include <stdio.h>

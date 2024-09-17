@@ -10,7 +10,7 @@ a. use dup
 b. use dup2
 c. use fcntl
 
-Data : --/--/----
+Data : 14/09/2024
 ============================================================================================
 */
 #include <stdio.h>
@@ -23,16 +23,10 @@ int main() {
     pid_t pid;
 
     // Create a pipe
-    if (pipe(pipefd) == -1) {
-        perror("pipe");
-        return 1;
-    }
+    pipe(pipefd);
 
     // Fork to create the first child process for 'ls -l'
-    if ((pid = fork()) == -1) {
-        perror("fork");
-        return 1;
-    }
+    pid = fork();
 
     if (pid == 0) { // First child
         // Redirect stdout to the write end of the pipe
@@ -46,10 +40,7 @@ int main() {
     }
 
     // Fork to create the second child process for 'wc'
-    if ((pid = fork()) == -1) {
-        perror("fork");
-        return 1;
-    }
+    pid = fork();
 
     if (pid == 0) { // Second child
         // Redirect stdin to the read end of the pipe

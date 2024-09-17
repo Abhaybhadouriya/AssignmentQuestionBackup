@@ -8,7 +8,7 @@ Description :
 12. Write a program to create an orphan process. Use kill system call to send SIGKILL signal to
 the parent process from the child process.
 
-Data : --/--/----
+Data : 13/09/2024
 ============================================================================================
 */
 #include <stdio.h>

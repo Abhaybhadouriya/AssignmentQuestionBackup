@@ -4,7 +4,7 @@ File Name : 7.c
 Author : Abhay bhadouriya
 Roll No : MT2024003
 Description : 7. Write a simple program to print the created thread ids.
-Data : --/--/----
+Data : 12/09/2024
 ============================================================================================
 */
 #include <stdio.h>
@@ -22,10 +22,7 @@ int main() {
 
     // Create threads
     for (int i = 0; i < 3; ++i) {
-        if (pthread_create(&threads[i], NULL, print_thread_id, NULL) != 0) {
-            perror("pthread_create");
-            exit(EXIT_FAILURE);
-        }
+        pthread_create(&threads[i], NULL, print_thread_id, NULL);
     }
 
     // Wait for threads to finish

@@ -4,7 +4,7 @@ File Name : 6.c
 Author : Abhay bhadouriya
 Roll No : MT2024003
 Description : 6. Write a simple program to create three threads.
-Data : --/--/----
+Data : 12/09/2024
 ============================================================================================
 */
 #include <stdio.h>
@@ -25,10 +25,7 @@ int main() {
     // Create 3 threads
     for (int i = 0; i < 3; ++i) {
         thread_args[i] = i + 1; // Pass thread number as argument
-        if (pthread_create(&threads[i], NULL, thread_function, &thread_args[i]) != 0) {
-            perror("pthread_create");
-            exit(EXIT_FAILURE);
-        }
+        pthread_create(&threads[i], NULL, thread_function, &thread_args[i]);
     }
 
     // Wait for all threads to complete

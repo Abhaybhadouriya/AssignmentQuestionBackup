@@ -14,10 +14,9 @@ e. SIGALRM (use setitimer system call)
 f. SIGVTALRM (use setitimer system call)
 g. SIGPROF (use setitimer system call)
 
-Data : --/--/----
+Data : 12/09/2024
 ============================================================================================
 */
-// sigvtalrm_setitimer.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -40,10 +39,7 @@ int main() {
     timer.it_interval.tv_sec = 0; // No periodic interval
     timer.it_interval.tv_usec = 0;
 
-    if (setitimer(ITIMER_VIRTUAL, &timer, NULL) == -1) {
-        perror("setitimer");
-        exit(EXIT_FAILURE);
-    }
+    setitimer(ITIMER_VIRTUAL, &timer, NULL);
 
     printf("Waiting for SIGVTALRM (Setitimer). It will trigger in 5 seconds...\n");
     pause(); // Wait for signals

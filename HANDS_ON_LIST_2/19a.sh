@@ -2,7 +2,7 @@
 
 :'
 ============================================================================================
-File Name : 19a.c
+File Name : 19a.sh
 Author : Abhay bhadouriya
 Roll No : MT2024003
 Description : 
@@ -14,7 +14,7 @@ c. use strace command to find out, which command (mknod or mkfifo) is better.
 c. mknod system call
 d. mkfifo library function
 
-Data : --/--/----
+Data : 15/09/2024
 ============================================================================================
 '
 # a. Create a FIFO using mknod

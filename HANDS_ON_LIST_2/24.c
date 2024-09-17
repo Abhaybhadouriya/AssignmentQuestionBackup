@@ -3,8 +3,8 @@
 File Name : 24.c
 Author : Abhay bhadouriya
 Roll No : MT2024003
-Description : 
-Data : --/--/----
+Description : 24. Write a program to create a message queue and print the key and message queue id.
+Data : 16/09/2024
 ============================================================================================
 */
 #include <stdio.h>

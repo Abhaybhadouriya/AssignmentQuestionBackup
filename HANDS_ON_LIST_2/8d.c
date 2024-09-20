@@ -32,7 +32,7 @@ int main() {
     alarm(5); // Set an alarm for 5 seconds
     printf("Waiting for SIGALRM. It will trigger in 5 seconds...\n");
 
-    pause(); // Wait for signals
+    while(1); // Wait for signals
 
     return 0;
 }

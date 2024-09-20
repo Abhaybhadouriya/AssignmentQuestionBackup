@@ -42,7 +42,7 @@ int main() {
     setitimer(ITIMER_VIRTUAL, &timer, NULL);
 
     printf("Waiting for SIGVTALRM (Setitimer). It will trigger in 5 seconds...\n");
-    pause(); // Wait for signals
+    while(1);
 
     return 0;
 }

@@ -48,9 +48,7 @@ int main() {
     // Start the timer
     setitimer(ITIMER_VIRTUAL, &timer, NULL);
     // Loop to keep the program running
-    while (1) {
-        // Busy-wait loop to consume virtual time
-    }
+    while (1);
 
     return 0;
 }

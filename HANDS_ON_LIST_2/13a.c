@@ -23,6 +23,6 @@ void sigstop_handler(int sig) {
 int main() {
     signal(SIGSTOP, sigstop_handler);
     printf("Waiting for SIGSTOP...\n");
-    while (1) pause(); // Wait indefinitely for signals
+    while (1); // Wait indefinitely for signals
     return 0;
 }

@@ -46,9 +46,6 @@ int main() {
     setitimer(ITIMER_REAL, &timer, NULL);
 
     // Loop to keep the program running
-    while (1) {
-        pause(); // Wait for signals
-    }
-
+    while (1);
     return 0;
 }

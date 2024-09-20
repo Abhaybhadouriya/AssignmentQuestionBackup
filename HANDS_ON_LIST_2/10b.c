@@ -29,9 +29,7 @@ int main() {
     sigaction(SIGINT, &sa, NULL);
     printf("Waiting for SIGINT. Press Ctrl+C to send SIGINT...\n");
 
-    while (1) {
-        pause(); // Wait for signals
-    }
+    while (1);
 
     return 0;
 }

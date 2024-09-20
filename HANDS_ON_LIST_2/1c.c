@@ -48,9 +48,7 @@ int main() {
     setitimer(ITIMER_PROF, &timer, NULL);
 
     // Loop to keep the program running
-    while (1) {
-        // Busy-wait loop to consume CPU and system time
-    }
+    while (1);
 
     return 0;
 }

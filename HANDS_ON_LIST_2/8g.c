@@ -42,7 +42,7 @@ int main() {
     setitimer(ITIMER_PROF, &timer, NULL);
 
     printf("Waiting for SIGPROF (Setitimer). It will trigger in 5 seconds...\n");
-    pause(); // Wait for signals
-
+     while (1);
+     
     return 0;
 }

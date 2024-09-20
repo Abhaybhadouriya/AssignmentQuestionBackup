@@ -41,7 +41,7 @@ int main() {
 
     setitimer(ITIMER_REAL, &timer, NULL);
     printf("Waiting for SIGALRM (Setitimer). It will trigger in 5 seconds...\n");
-    pause(); // Wait for signals
+    while(1);// Wait for signals
 
     return 0;
 }
